@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HiveHelper.Controllers
 {
+  
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -68,6 +69,22 @@ namespace HiveHelper.Controllers
         public Object AddUser([FromForm]User user)
         {
             bool result = data.AddUser(user);
+
+            return new { result };
+        }
+        [HttpPut("{username}/{password?}")]
+        public Object UpdatePassword([FromForm]User user, string username, string password)
+        {
+            dynamic response = Login(username, password);
+            bool result;
+            if(response.result == "new" || response.result == "success")
+            {
+                result = data.UpdateUser(user);
+            }
+            else
+            {
+                result = false;
+            }
 
             return new { result };
         }

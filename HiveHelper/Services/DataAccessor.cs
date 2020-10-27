@@ -136,5 +136,16 @@ namespace HiveHelper.Services
             int result = db.Execute("UpdateTertiaryAction", new { id = tertiary.id, active = tertiary.active }, commandType: CommandType.StoredProcedure);
             return result == 1;
         }
+
+        public bool UpdateUser(User user)
+        {
+            string query = "UPDATE [User] SET first_name = @first_name, password = @password, last_name = @last_name, access_level = @access_level, username = @username WHERE id = @id";
+            int result = db.Execute(query, user);
+
+            return result == 1;
+
+
+
+        }
     }
 }
