@@ -35,7 +35,7 @@ namespace HiveHelper.Services
 
         public bool AddUser(User new_user)
         {
-            int result = db.Execute("AddUser", new { firstname = new_user.first_name, lastname = new_user.last_name, accesslevel = new_user.access_level, username = new_user.username });
+            int result = db.Execute("AddUser", new { @firstname = new_user.first_name, @lastname = new_user.last_name, @accesslevel = new_user.access_level, @username = new_user.username }, commandType: CommandType.StoredProcedure );
             return result != 0;
         }
 
@@ -78,8 +78,21 @@ namespace HiveHelper.Services
 
         public User GetUser(string username)
         {
-            string query = "SELECT * FROM User WHERE username = @username";
-            return db.QuerySingle<User>(query, new { username });
+            string query = "SELECT * FROM [User] WHERE username = @username";
+
+            User found;
+
+            try
+            {
+               found = db.QuerySingle<User>(query, new { username });
+            } 
+            catch 
+            {
+                found = null;
+            }
+
+            return found;
+            
         }
 
         public Location GetYard(long id)
