@@ -79,6 +79,7 @@ namespace HiveHelper.Controllers
             bool result;
             if(response.result == "new" || response.result == "success")
             {
+                user.password = ParsePassword(user.password);
                 result = data.UpdateUser(user);
             }
             else
