@@ -25,6 +25,9 @@ namespace HiveHelper.Services
         public bool UpdateActionDetail(ActionDetail update_action);
         public bool AddYard(Location add_yard);
         public bool UpdateHive(Hive update_hive);
+        public bool AddPrimaryAction(PrimaryAction primary);
+        public bool AddSecondaryAction(SecondaryAction secondary);
+        public bool AddTertiaryAction(TertiaryAction tertiary);
 
         // user 
         public User GetUser(string username);

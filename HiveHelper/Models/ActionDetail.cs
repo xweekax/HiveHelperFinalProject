@@ -22,7 +22,9 @@ namespace HiveHelper.Models
         public string primary_action_name { get; set; }
         public string secondary_action_name { get; set; }
         public string tertiary_action_name { get; set; }
-        public string completed_by_name { get; set; }
-        public string entered_by_name { get; set; }
+        public string completed_by_first_name { get; set; }
+        public string completed_by_last_name { get; set; }
+        public string entered_by_first_name { get; set; }
+        public string entered_by_last_name { get; set; }
     }
 }

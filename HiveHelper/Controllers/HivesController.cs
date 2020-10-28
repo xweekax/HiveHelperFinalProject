@@ -39,7 +39,7 @@ namespace HiveHelper.Controllers
         } 
         
         [HttpPost("locations")]
-        public Object AddYard(Location new_yard)
+        public Object AddYard([FromForm] Location new_yard)
         {
             bool result = data.AddYard(new_yard);
             return new { result };
@@ -53,14 +53,14 @@ namespace HiveHelper.Controllers
         }
 
         [HttpPost("")]
-        public Object AddHive(Hive new_hive)
+        public Object AddHive([FromForm] Hive new_hive)
         {
             bool result = data.AddHive(new_hive);
             return new { result };
         }
 
         [HttpPut("")]
-        public Object UpdateHive(Hive update_hive)
+        public Object UpdateHive([FromForm] Hive update_hive)
         {
             bool result = data.UpdateHive(update_hive);
             return new { result };

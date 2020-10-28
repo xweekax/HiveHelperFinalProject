@@ -64,7 +64,6 @@ namespace HiveHelper.Controllers
         public Object AddUser([FromForm]User user)
         {
             bool result = data.AddUser(user);
-
             return new { result };
         }
         [HttpPut("{username}/{password?}")]

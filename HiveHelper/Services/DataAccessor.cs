@@ -20,16 +20,40 @@ namespace HiveHelper.Services
 
         public bool AddActionDetails(ActionDetail action)
         {
+            string enteredOn = action.entry_date.ToString("d");
+            string completedOn = action.completed_date.ToString("d");
+            string scheduledOn = action.scheduled_date.ToShortDateString() + " " + action.scheduled_date.ToShortTimeString();
             //int result = db.Execute("AddActionDetail", new { hiveid = action.hive_id, completedbyid = action.completed_by_id, enteredbyid = action.entered_by_id, primaryactionid = action.primary_action_id, secondaryactionid = action.secondary_action_id, tertiaryactionid = action.tertiary_action_id, completed = action.completed, entrydate = action.entry_date, scheduleddate = action.scheduled_date, completeddate = action.completed_date, comments = action.comments }, commandType: CommandType.StoredProcedure);
-            string query = "INSERT INTO ActionDetail ('hive_id','completed_by_id','entered_by_id','primary_action_id','secondary_action_id','tertiary_action_id','completed','entry_date','scheduled_date','completed_date','comments') VALUES (@hive_id, @completed_by_id, @entered_by_id, @primary_action_id, @secondary_action_id, @tertiary_action_id, @completed, @entry_date, @scheduled_date, @completed_date, @entry_date)";
-            int result =db.Execute(query, new { action.hive_id, action.completed_by_id, action.entered_by_id, action.primary_action_id, action.secondary_action_id, action.tertiary_action_id, action.completed, action.entry_date, action.scheduled_date, action.completed_date, action.comments});
+            string query = "INSERT INTO ActionDetail (hive_id, completed_by_id, entered_by_id, primary_action_id, secondary_action_id, tertiary_action_id, completed, entry_date, scheduled_date, completed_date, comments) VALUES (@hive_id, @completed_by_id, @entered_by_id, @primary_action_id, @secondary_action_id, @tertiary_action_id, @completed, @entry_date, @scheduled_date, @completed_date, @comments)";
+            int result =db.Execute(query, new { action.hive_id, action.completed_by_id, action.entered_by_id, action.primary_action_id, action.secondary_action_id, action.tertiary_action_id, action.completed, @entry_date = enteredOn, @scheduled_date = scheduledOn, @completed_date = completedOn, action.comments});
             return result != 0;
         }
 
         public bool AddHive(Hive add_hive)
         {
-            int result = db.Execute("AddHive", new {locationid = add_hive.location_id, inspectioninterval = add_hive.inspection_interval, name = add_hive.name }, commandType: CommandType.StoredProcedure);
+            int result = db.Execute("AddHive", new {@location_id = add_hive.location_id, @inspection_interval = add_hive.inspection_interval, @name = add_hive.name }, commandType: CommandType.StoredProcedure);
             return result != 0;
+        }
+
+        public bool AddPrimaryAction(PrimaryAction primary)
+        {
+            string query = "INSERT INTO PrimaryAction (name, active) VALUES (@name, @active)";
+            int result = db.Execute(query, primary);
+            return result == 1;
+        }
+
+        public bool AddSecondaryAction(SecondaryAction secondary)
+        {
+            string query = "INSERT INTO SecondaryAction (name, active, primary_action_id) VALUES (@name, @active, @primary_action_id)";
+            int result = db.Execute(query, secondary);
+            return result == 1;
+        }
+
+        public bool AddTertiaryAction(TertiaryAction tertiary)
+        {
+            string query = "INSERT INTO TertiaryAction (name, active, secondary_action_id) VALUES (@name, @active, @secondary_action_id)";
+            int result = db.Execute(query, tertiary);
+            return result == 1;
         }
 
         public bool AddUser(User new_user)
