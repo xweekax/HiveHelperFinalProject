@@ -17,6 +17,7 @@ export class UserDataService {
 
   //login
   login(username: string, password: string): Observable<ApiResult> {
+    console.log(this.baseUrl + this.userUrl + `/${username}/${password}`);
     return this.http.get<ApiResult>(this.baseUrl + this.userUrl + `/${username}/${password}`);
   }
 
@@ -27,6 +28,7 @@ export class UserDataService {
 
   //update-password
   updatePassword(oldPassword: string, newPassword: string): Observable<ApiResult> {
+    console.log('service entered');
     this.loggedIn.user.password = newPassword;
     return this.http.put<ApiResult>(this.baseUrl + this.userUrl + `/${this.loggedIn.user.username}/${oldPassword}`, this.loggedIn.user);
   }

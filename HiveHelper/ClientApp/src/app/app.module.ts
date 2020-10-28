@@ -7,19 +7,23 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { LoginComponent } from './components/login/login.component';
+import { YardsViewComponent } from './components/yards-view/yards-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    LoginComponent
+    LoginComponent,
+    YardsViewComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      {path: '', pathMatch: 'full', component: LoginComponent}
+      { path: '', pathMatch: 'full', redirectTo: 'Login' },
+      { path: 'Login', pathMatch: 'full', component: LoginComponent },
+      { path: 'Overview', pathMatch: 'full', component: YardsViewComponent }
     ])
   ],
   providers: [],
