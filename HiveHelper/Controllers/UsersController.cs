@@ -27,12 +27,22 @@ namespace HiveHelper.Controllers
             byte[] hashed = hasher.ComputeHash(Encoding.UTF8.GetBytes(password));
 
             StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < hashed.Length; i++ )
+            for (int i = 0; i < hashed.Length; i++)
             {
                 builder.Append(hashed[i].ToString("x2"));
             }
             return builder.ToString();
         }
+
+        private string ExtraMethod(string toParse)
+        {
+            if(toParse is null)
+            {
+                toParse = "";
+            }
+            return ParsePassword(toParse);
+        }
+
         [HttpGet("{username}/{password?}")]
         public Object Login(string username, string password)
         {
@@ -43,7 +53,7 @@ namespace HiveHelper.Controllers
 
             if(found == null)
             {
-                status = "fail";
+                status = "fail no user found";
                 result = false;
             }
             else if (found.password == null || found.password == "")
@@ -51,7 +61,7 @@ namespace HiveHelper.Controllers
                 status = "new";
                 result = true;
             }
-            else if (found.password == ParsePassword(password))
+            else if (found.password == ExtraMethod(password))
             {
                 status = "success";
                 found.password = null;
@@ -59,33 +69,39 @@ namespace HiveHelper.Controllers
             }
             else
             {
-                status = "fail";
+                status = $"fail password doesn't match \n {found.password} \n {ParsePassword(password)}";
                 found = null;
                 result = false;
             }
             return new { result, status, user = found };
         }
         [HttpPost]
-        public Object AddUser([FromForm]User user)
+        public Object AddUser(User user)
         {
             bool result = data.AddUser(user);
             return new { result };
         }
         [HttpPut("{username}/{password?}")]
-        public Object UpdatePassword([FromForm]User user, string username, string password)
+        public Object UpdatePassword(User user, string username, string password)
         {
+            string status = "";
+            if (password is null)
+            {
+                password = "";
+            }
             dynamic response = Login(username, password);
             bool result;
             if(response.status == "new" || response.status == "success")
             {
-                user.password = ParsePassword(user.password);
+                status = user.password;
+                user.password = ExtraMethod(user.password);
                 result = data.UpdateUser(user);
             }
             else
             {
                 result = false;
             }
-            return new { result };
+            return new { result, status};
         }
     }
 }
