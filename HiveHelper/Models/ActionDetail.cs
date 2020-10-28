@@ -24,9 +24,5 @@ namespace HiveHelper.Models
         public string tertiary_action_name { get; set; }
         public string completed_by_name { get; set; }
         public string entered_by_name { get; set; }
-
     }
-
-
-
 }

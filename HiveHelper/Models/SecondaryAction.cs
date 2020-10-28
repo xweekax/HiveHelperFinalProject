@@ -11,7 +11,5 @@ namespace HiveHelper.Models
         public string name { get; set; }
         public long primary_action_id { get; set; }
         public bool active { get; set; }
-
     }
-
 }

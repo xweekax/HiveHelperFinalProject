@@ -23,10 +23,12 @@ namespace HiveHelper.Services
         public IEnumerable<ActionDetail> GetActionDetails(long hive_id);
         public bool AddActionDetails(ActionDetail action);
         public bool UpdateActionDetail(ActionDetail update_action);
+        public bool AddYard(Location add_yard);
+        public bool UpdateHive(Hive update_hive);
 
+        // user 
         public User GetUser(string username);
         public bool AddUser(User new_user);
-        public bool UpdateUser(User user);
-
+        public bool UpdateUser(User user);        
     }
 }

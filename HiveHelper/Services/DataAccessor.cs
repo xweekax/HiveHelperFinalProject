@@ -21,7 +21,6 @@ namespace HiveHelper.Services
         public bool AddActionDetails(ActionDetail action)
         {
             //int result = db.Execute("AddActionDetail", new { hiveid = action.hive_id, completedbyid = action.completed_by_id, enteredbyid = action.entered_by_id, primaryactionid = action.primary_action_id, secondaryactionid = action.secondary_action_id, tertiaryactionid = action.tertiary_action_id, completed = action.completed, entrydate = action.entry_date, scheduleddate = action.scheduled_date, completeddate = action.completed_date, comments = action.comments }, commandType: CommandType.StoredProcedure);
-
             string query = "INSERT INTO ActionDetail ('hive_id','completed_by_id','entered_by_id','primary_action_id','secondary_action_id','tertiary_action_id','completed','entry_date','scheduled_date','completed_date','comments') VALUES (@hive_id, @completed_by_id, @entered_by_id, @primary_action_id, @secondary_action_id, @tertiary_action_id, @completed, @entry_date, @scheduled_date, @completed_date, @entry_date)";
             int result =db.Execute(query, new { action.hive_id, action.completed_by_id, action.entered_by_id, action.primary_action_id, action.secondary_action_id, action.tertiary_action_id, action.completed, action.entry_date, action.scheduled_date, action.completed_date, action.comments});
             return result != 0;
@@ -39,17 +38,21 @@ namespace HiveHelper.Services
             return result != 0;
         }
 
+        public bool AddYard(Location add_yard)
+        {
+            int result = db.Execute("AddYard", new { @name = add_yard.name, @address = add_yard.address }, commandType: CommandType.StoredProcedure);
+            return result == 1;
+        }
+
         public bool DeleteHive(long id)
         {
             int result = db.Execute("DeleteHive", new { id }, commandType: CommandType.StoredProcedure );
             return result != 0;
-
         }
 
         public IEnumerable<ActionDetail> GetActionDetails(long hive_id)
         {
-            return db.Query<ActionDetail>("GetActionDetails", new { hive_id }, commandType: CommandType.StoredProcedure);
-            
+            return db.Query<ActionDetail>("GetActionDetails", new { hive_id }, commandType: CommandType.StoredProcedure);            
         }
 
         public IEnumerable<Hive> GetHives(long location_id)
@@ -90,9 +93,7 @@ namespace HiveHelper.Services
             {
                 found = null;
             }
-
-            return found;
-            
+            return found;            
         }
 
         public Location GetYard(long id)
@@ -115,20 +116,24 @@ namespace HiveHelper.Services
             return results == 1;
         }
 
+        public bool UpdateHive(Hive update_hive)
+        {
+            string query = "UPDATE Hive SET location_id = @location_id, inspection_interval = @inspection_interval, name = @name WHERE id = @id";
+            int results = db.Execute(query, update_hive);
+            return results == 1;
+        }
+
         public bool UpdatePrimaryAction(PrimaryAction primary)
         {
-
             int result = db.Execute("UpdatePrimaryAction", new { id = primary.id, active = primary.active }, commandType: CommandType.StoredProcedure);
             return result == 1;
             //string query = "UPDATE id, active FROM PrimaryAction";
-
         }
 
         public bool UpdateSecondaryAction(SecondaryAction secondary)
         {
             int result = db.Execute("UpdateSecondaryAction", new { id = secondary.id, active = secondary.active }, commandType: CommandType.StoredProcedure);
             return result == 1;
-            
         }
 
         public bool UpdateTertiaryAction(TertiaryAction tertiary)
@@ -141,11 +146,7 @@ namespace HiveHelper.Services
         {
             string query = "UPDATE [User] SET first_name = @first_name, password = @password, last_name = @last_name, access_level = @access_level, username = @username WHERE id = @id";
             int result = db.Execute(query, user);
-
             return result == 1;
-
-
-
         }
     }
 }

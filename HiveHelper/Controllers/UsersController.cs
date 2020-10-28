@@ -10,8 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HiveHelper.Controllers
-{
-  
+{  
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -32,7 +31,6 @@ namespace HiveHelper.Controllers
             {
                 builder.Append(hashed[i].ToString("x2"));
             }
-
             return builder.ToString();
         }
         [HttpGet("{username}/{password}")]
@@ -40,8 +38,7 @@ namespace HiveHelper.Controllers
         {
             User found = data.GetUser(username);
 
-            long id = 0;           
-            string result = "";
+            string result;
 
             if(found == null)
             {
@@ -50,20 +47,18 @@ namespace HiveHelper.Controllers
             else if (found.password == null || found.password == "")
             {
                 result = "new";
-                id = found.id;                
             }
             else if (found.password == ParsePassword(password))
             {               
                 result = "success";
-                id = found.id;            
-                
+                found.password = null;
             }
             else
             {
                 result = "fail";
-
+                found = null;
             }
-            return new { result, id, username };
+            return new { result, user = found };
         }
         [HttpPost]
         public Object AddUser([FromForm]User user)
@@ -86,9 +81,7 @@ namespace HiveHelper.Controllers
             {
                 result = false;
             }
-
             return new { result };
         }
-
     }
 }
