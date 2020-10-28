@@ -13,11 +13,13 @@ export class LoginComponent implements OnInit {
   password: string;
   confirmPassword: string;
   passwordRequired: boolean;
+  enterPassword: string;
   displayError: boolean;
 
   constructor(private user: UserDataService, private route: Router) {
     this.username = '';
     this.password = '';
+    this.enterPassword = '';
     this.confirmPassword = '';
     this.passwordRequired = false;
     this.displayError = false;
@@ -56,7 +58,7 @@ export class LoginComponent implements OnInit {
     //check password requirements
     if (this.password == this.confirmPassword && this.password.match(/(.*?=[A-Z])(.*?=[a-z])(.*?=[0-9]).{8,16}/)) {
       this.user.updatePassword('', this.password).subscribe(result => {
-        this.user.loggedIn.user.password = '';
+        //this.user.loggedIn.user.password = '';
         this.route.navigate(['Overview']);
       });
     }

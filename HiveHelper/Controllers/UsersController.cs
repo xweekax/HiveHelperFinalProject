@@ -33,32 +33,37 @@ namespace HiveHelper.Controllers
             }
             return builder.ToString();
         }
-        [HttpGet("{username}/{password}")]
+        [HttpGet("{username}/{password?}")]
         public Object Login(string username, string password)
         {
             User found = data.GetUser(username);
 
-            string result;
+            bool result;
+            string status;
 
             if(found == null)
             {
-                result = "fail";
+                status = "fail";
+                result = false;
             }
             else if (found.password == null || found.password == "")
             {
-                result = "new";
+                status = "new";
+                result = true;
             }
             else if (found.password == ParsePassword(password))
-            {               
-                result = "success";
+            {
+                status = "success";
                 found.password = null;
+                result = true;
             }
             else
             {
-                result = "fail";
+                status = "fail";
                 found = null;
+                result = false;
             }
-            return new { result, user = found };
+            return new { result, status, user = found };
         }
         [HttpPost]
         public Object AddUser([FromForm]User user)
@@ -71,7 +76,7 @@ namespace HiveHelper.Controllers
         {
             dynamic response = Login(username, password);
             bool result;
-            if(response.result == "new" || response.result == "success")
+            if(response.status == "new" || response.status == "success")
             {
                 user.password = ParsePassword(user.password);
                 result = data.UpdateUser(user);
