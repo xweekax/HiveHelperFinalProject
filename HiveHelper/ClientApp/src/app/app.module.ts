@@ -8,13 +8,19 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { LoginComponent } from './components/login/login.component';
 import { YardsViewComponent } from './components/yards-view/yards-view.component';
+import { HivesViewComponent } from './components/hives-view/hives-view.component';
+import { HiveDetailViewComponent } from './components/hive-detail-view/hive-detail-view.component';
+import { CardLinkComponent } from './components/card-link/card-link.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     LoginComponent,
-    YardsViewComponent
+    YardsViewComponent,
+    HivesViewComponent,
+    HiveDetailViewComponent,
+    CardLinkComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -23,7 +29,9 @@ import { YardsViewComponent } from './components/yards-view/yards-view.component
     RouterModule.forRoot([
       { path: '', pathMatch: 'full', redirectTo: 'Login' },
       { path: 'Login', pathMatch: 'full', component: LoginComponent },
-      { path: 'Overview', pathMatch: 'full', component: YardsViewComponent }
+      { path: 'Overview', pathMatch: 'full', component: YardsViewComponent },
+      { path: 'Yard/:location_id', pathMatch: 'full', component: HivesViewComponent },
+      { path: 'Hive/:hive_id', pathMatch: 'full', component: HiveDetailViewComponent }
     ])
   ],
   providers: [],
