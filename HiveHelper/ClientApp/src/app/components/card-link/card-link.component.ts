@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card-link',
@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-link.component.css']
 })
 export class CardLinkComponent implements OnInit {
+
+  @Input() link: string;
+  @Input() data: string | number;
+  @Input() title: string;
 
   constructor() { }
 

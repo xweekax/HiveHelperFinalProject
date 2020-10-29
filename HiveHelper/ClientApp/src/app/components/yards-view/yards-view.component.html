@@ -1,4 +1,4 @@
 All Yards
 <div *ngFor="let y of yards">
-  <a [routerLink]="['/Yard',y.id]">{{y.name}}</a>
+  <app-card-link [link]="'Yard'" [data]="y.id" [title]="y.name"></app-card-link>
 </div>
