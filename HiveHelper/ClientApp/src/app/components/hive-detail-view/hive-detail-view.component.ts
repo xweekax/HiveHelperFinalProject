@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HiveDataService } from '../../services/hive-data.service';
 import { ActionDataService } from '../../services/action-data.service';
-import { Route, ActivatedRoute } from '@angular/router';
+import { Route, ActivatedRoute, Router } from '@angular/router';
 import { Hive } from '../../models/hive';
 import { ActionDetail } from '../../models/action-detail';
+import { UserDataService } from '../../services/user-data.service';
 
 @Component({
   selector: 'app-hive-detail-view',
@@ -16,11 +17,14 @@ export class HiveDetailViewComponent implements OnInit {
   details: ActionDetail[];
   message: string;
   
-  constructor(private hive_data: HiveDataService, private action_data:  ActionDataService, private route: ActivatedRoute) {
+  constructor(private hive_data: HiveDataService, private action_data:  ActionDataService, private route: ActivatedRoute, private user_data: UserDataService, private router: Router) {
     this.details = [];
   }
 
   ngOnInit() {
+    if (!this.user_data.loggedIn.result) {
+      this.router.navigate(['LoginRequired']);
+    }
     this.hive_id = +this.route.snapshot.paramMap.get("hive_id");
     this.refreshActionDetails();
   }

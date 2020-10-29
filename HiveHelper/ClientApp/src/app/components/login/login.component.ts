@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../../services/user-data.service';
 import { ApiResult } from '../../models/api-result';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +15,9 @@ export class LoginComponent implements OnInit {
   passwordRequired: boolean;
   enterPassword: string;
   displayError: boolean;
+  redirectMessage: string;
 
-  constructor(private user: UserDataService, private route: Router) {
+  constructor(private user: UserDataService, private router: Router, private route: ActivatedRoute) {
     //used for initial login
     this.username = '';
     this.password = '';
@@ -32,6 +33,9 @@ export class LoginComponent implements OnInit {
 
   //no initialization logic needed yet.
   ngOnInit() {
+    if (this.route.snapshot.data.message) {
+      this.redirectMessage = this.route.snapshot.data.message;
+    }
   }
 
   //call user service to login, store the returned result in the service, and process it here.
@@ -50,7 +54,7 @@ export class LoginComponent implements OnInit {
     }
     else if (response.result) {
       //take to main page
-      this.route.navigate(['Overview']);
+      this.router.navigate(['Overview']);
     }
     else {
       //login failed

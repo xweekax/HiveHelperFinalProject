@@ -11,6 +11,7 @@ import { YardsViewComponent } from './components/yards-view/yards-view.component
 import { HivesViewComponent } from './components/hives-view/hives-view.component';
 import { HiveDetailViewComponent } from './components/hive-detail-view/hive-detail-view.component';
 import { CardLinkComponent } from './components/card-link/card-link.component';
+import { AddActionDetailComponent } from './components/add-action-detail/add-action-detail.component';
 
 @NgModule({
   declarations: [
@@ -20,18 +21,20 @@ import { CardLinkComponent } from './components/card-link/card-link.component';
     YardsViewComponent,
     HivesViewComponent,
     HiveDetailViewComponent,
-    CardLinkComponent
+    CardLinkComponent,
+    AddActionDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', pathMatch: 'full', redirectTo: 'Login' },
+      { path: '', pathMatch: 'full', redirectTo: 'Overview' },
       { path: 'Login', pathMatch: 'full', component: LoginComponent },
       { path: 'Overview', pathMatch: 'full', component: YardsViewComponent },
       { path: 'Yard/:location_id', pathMatch: 'full', component: HivesViewComponent },
-      { path: 'Hive/:hive_id', pathMatch: 'full', component: HiveDetailViewComponent }
+      { path: 'Hive/:hive_id', pathMatch: 'full', component: HiveDetailViewComponent },
+      { path: 'LoginRequired', pathMatch: 'full', component: LoginComponent, data: {message: "You must login to use the site."} }
     ])
   ],
   providers: [],
