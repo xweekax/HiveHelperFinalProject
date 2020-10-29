@@ -1,5 +1,5 @@
 export interface ActionDetail {
-  id: number;
+  id?: number;
   primary_action_id: number;
   secondary_action_id: number;
   tertiary_action_id: number;
@@ -11,11 +11,11 @@ export interface ActionDetail {
   completed_date: Date;
   scheduled_date: Date;
   comments: string;
-  primary_action_name: string;
-  secondary_action_name: string;
-  tertiary_action_name: string;
-  completed_by_first_name: string;
-  completed_by_last_name: string;
-  entered_by_first_name: string;
-  entered_by_last_name: string;
+  primary_action_name?: string;
+  secondary_action_name?: string;
+  tertiary_action_name?: string;
+  completed_by_first_name?: string;
+  completed_by_last_name?: string;
+  entered_by_first_name?: string;
+  entered_by_last_name?: string;
 }

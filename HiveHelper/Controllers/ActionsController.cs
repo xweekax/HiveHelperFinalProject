@@ -27,14 +27,14 @@ namespace HiveHelper.Controllers
         }
 
         [HttpPost("details")]
-        public Object AddActionDetails([FromForm] ActionDetail actionDetail)
+        public Object AddActionDetails(ActionDetail actionDetail)
         {
             bool result = data.AddActionDetails(actionDetail);
             return new { result };
         }
 
         [HttpPut("details")]
-        public Object UpdateActionDetails([FromForm] ActionDetail actionDetail)
+        public Object UpdateActionDetails(ActionDetail actionDetail)
         {
             bool result = data.UpdateActionDetail(actionDetail);
             return new { result };
@@ -47,14 +47,14 @@ namespace HiveHelper.Controllers
         }
 
         [HttpPost("primary")]
-        public Object AddPrimaryAction([FromForm] PrimaryAction action)
+        public Object AddPrimaryAction(PrimaryAction action)
         {
             bool result = data.AddPrimaryAction(action);
             return new { result };
         }
 
         [HttpPut("primary")]
-        public Object UpdatePrimaryAction([FromForm] PrimaryAction primaryAction)
+        public Object UpdatePrimaryAction(PrimaryAction primaryAction)
         {
             bool result = data.UpdatePrimaryAction(primaryAction);
             return new { result };
@@ -67,14 +67,14 @@ namespace HiveHelper.Controllers
         }
 
         [HttpPost("secondary")]
-        public Object AddSecondaryAction([FromForm] SecondaryAction action)
+        public Object AddSecondaryAction(SecondaryAction action)
         {
             bool result = data.AddSecondaryAction(action);
             return new { result };
         }
 
         [HttpPut("secondary")]
-        public Object UpdateSecondaryAction([FromForm] SecondaryAction secondaryAction)
+        public Object UpdateSecondaryAction(SecondaryAction secondaryAction)
         {
             bool result = data.UpdateSecondaryAction(secondaryAction);
             return new { result };
@@ -87,14 +87,14 @@ namespace HiveHelper.Controllers
         }
 
         [HttpPost("tertiary")]
-        public Object AddTertiaryAction([FromForm] TertiaryAction action)
+        public Object AddTertiaryAction(TertiaryAction action)
         {
             bool result = data.AddTertiaryAction(action);
             return new { result };
         }
 
         [HttpPut("tertiary")]
-        public Object UpdateTertiaryAction([FromForm] TertiaryAction tertiaryAction)
+        public Object UpdateTertiaryAction(TertiaryAction tertiaryAction)
         {
             bool result = data.UpdateTertiaryAction(tertiaryAction);
             return new { result };

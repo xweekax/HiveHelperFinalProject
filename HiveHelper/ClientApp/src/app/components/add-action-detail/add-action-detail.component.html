@@ -1,0 +1,15 @@
+Primary Action:<select [(ngModel)]="primary_action">
+  <option *ngFor="let a of primary_action_list" value="a">{{a.name}}</option>
+</select>
+<br />
+Secondary Action:<select [(ngModel)]="secondary_action">
+  <option *ngFor="let a of secondary_action_list" value="a">{{a.name}}</option>
+</select>
+<br />
+Tertiary Action:<select [(ngModel)]="tertiary_action">
+  <option *ngFor="let a of teriary_action_list" value="a">{{a.name}}</option>
+</select>
+<br />
+<textarea [(ngModel)]="comments" placeholder="Comments"></textarea>
+<br/>
+<button (click)="addAction()">Submit</button>
