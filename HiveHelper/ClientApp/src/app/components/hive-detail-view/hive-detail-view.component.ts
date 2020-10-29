@@ -14,7 +14,8 @@ export class HiveDetailViewComponent implements OnInit {
   hive: Hive;
   hive_id: number;
   details: ActionDetail[];
-
+  message: string;
+  
   constructor(private hive_data: HiveDataService, private action_data:  ActionDataService, private route: ActivatedRoute) {
     this.details = [];
   }
@@ -29,6 +30,32 @@ export class HiveDetailViewComponent implements OnInit {
       while (this.details.length > 0) { this.details.pop(); }
       results.forEach((value) => this.details.push(value));
     });
+  }
+
+  completedActions() {
+    return this.details.filter(x => x.completed);
+  }
+
+  incompleteActions() {
+    return this.details.filter(x => !x.completed);
+  }
+
+  completeTask(action: ActionDetail) {
+    action.completed = true;
+    this.action_data.updateActionDetail(action).subscribe(response => {
+      if (!response.result) {
+        action.completed = false;
+        this.message = "Failed to complete action";
+      }
+    });
+  }
+
+  onAdd(action: ActionDetail) {
+    this.action_data.addActionDetail(action).subscribe(response => {
+      if (response.result) {
+        this.refreshActionDetails();
+      }
+    })
   }
 
 }

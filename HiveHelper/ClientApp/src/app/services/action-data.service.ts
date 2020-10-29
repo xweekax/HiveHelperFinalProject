@@ -5,6 +5,7 @@ import { ActionDetail } from '../models/action-detail';
 import { PrimaryAction } from '../models/primary-action';
 import { SecondaryAction } from '../models/secondary-action';
 import { TertiaryAction } from '../models/tertiary-action';
+import { ApiResult } from '../models/api-result';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,11 @@ export class ActionDataService {
   }
   getTertiaryActions(secondary_id: number): Observable<TertiaryAction[]> {
     return this.http.get<TertiaryAction[]>(this.baseUrl + this.DetailsUrl + `tertiary/${secondary_id}`);
+  }
+  updateActionDetail(action: ActionDetail): Observable<ApiResult> {
+    return this.http.put<ApiResult>(this.baseUrl + this.DetailsUrl + 'details', action);
+  }
+  addActionDetail(action: ActionDetail): Observable<ApiResult> {
+    return this.http.post<ApiResult>(this.baseUrl + this.DetailsUrl + 'details', action);
   }
 }
