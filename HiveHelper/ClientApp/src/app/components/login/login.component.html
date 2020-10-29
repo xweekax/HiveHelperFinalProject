@@ -1,11 +1,11 @@
 <h3>{{redirectMessage}}</h3>
 <div *ngIf="!passwordRequired">
   <label>Username<input [(ngModel)]="username" /></label>
-  <label>Password<input [(ngModel)]="password" /></label>
+  <label>Password<input type="password" [(ngModel)]="password" /></label>
   <button (click)="attemptLogin()">Login</button>
 </div>
 <div *ngIf="passwordRequired">
-  <label>Password<input [(ngModel)]="enterPassword" /></label>
-  <label>Confirm Password<input [(ngModel)]="confirmPassword" /></label>
+  <label>Password<input type="password" [(ngModel)]="enterPassword" /></label>
+  <label>Confirm Password<input type="password" [(ngModel)]="confirmPassword" /></label>
   <button (click)="updatePassword()">Submit</button>
 </div>

@@ -1,5 +1,5 @@
 Hives in Yard
 <div *ngFor="let h of hives">
-  <a [routerLink]="['/Hive', h.id]">{{h.name}}</a>
+  <app-card-link [link]="'Hive'" [data]="h.id" [title]="h.name"></app-card-link>
 </div>
 
