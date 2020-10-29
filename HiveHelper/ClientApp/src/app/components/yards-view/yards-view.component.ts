@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HiveDataService } from '../../services/hive-data.service';
 import { Location } from '../../models/location';
+import { UserDataService } from '../../services/user-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-yards-view',
@@ -9,11 +11,14 @@ import { Location } from '../../models/location';
 })
 export class YardsViewComponent implements OnInit {
   yards: Location[];
-  constructor(private data: HiveDataService) {
+  constructor(private data: HiveDataService, private user_data: UserDataService, private router: Router) {
     this.yards = [];
   }
 
   ngOnInit() {
+    if (!this.user_data.loggedIn.result) {
+      this.router.navigate(['LoginRequired']);
+    }
     this.refreshYards();
   }
 

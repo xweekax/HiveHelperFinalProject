@@ -15,49 +15,73 @@ export class AddActionDetailComponent implements OnInit {
 
   @Input() hive_id: number;
   @Output() added: EventEmitter<ActionDetail> = new EventEmitter();
-  primary_action: PrimaryAction;
+
   primary_action_list: PrimaryAction[];
-  secondary_action: SecondaryAction;
   secondary_action_list: SecondaryAction[];
-  tertiary_action: TertiaryAction;
   tertiary_action_list: TertiaryAction[];
-  comments: string;
-  schedule_date: Date;
-  submitted_date: Date;
-  completed_date: Date;
+
+  new_action: ActionDetail;
   scheduled: boolean;
   message: string;
 
   constructor(private action_data: ActionDataService, private user_data: UserDataService) {
-
+    this.primary_action_list = [];
+    this.secondary_action_list = [];
+    this.tertiary_action_list = [];
   }
 
-  ngOnInit() {
-    this.submitted_date = new Date();
-    this.schedule_date = new Date();
-    this.completed_date = new Date();
-  }
-
-  addAction() {
-    if (this.scheduled && this.schedule_date < this.submitted_date) {
-      this.message = "Incorrect Scheduled Date";
-      return
-    }
-
-    let addObject: ActionDetail = {
-      primary_action_id: this.primary_action.id,
-      secondary_action_id: this.secondary_action.id,
-      tertiary_action_id: this.tertiary_action.id,
+  setAction() {
+    this.new_action = {
+      id: 0,
+      primary_action_id: 0,
+      secondary_action_id: 0,
+      tertiary_action_id: 0,
       hive_id: this.hive_id,
       completed_by_id: this.user_data.loggedIn.user.id,
       entered_by_id: this.user_data.loggedIn.user.id,
-      completed: !this.scheduled,
-      entry_date: this.submitted_date,      
-      completed_date: this.completed_date,
-      scheduled_date: this.schedule_date,
-      comments: this.comments
+      completed: true,
+      entry_date: new Date(),
+      completed_date: new Date(),
+      scheduled_date: new Date(),
+      comments: '',
+      primary_action_name: '',
+      secondary_action_name: '',
+      tertiary_action_name: '',
+      completed_by_first_name: '',
+      completed_by_last_name: '',
+      entered_by_first_name: '',
+      entered_by_last_name: ''
     }
-    this.added.emit(addObject);
+  }
+
+  ngOnInit() {
+    this.setAction();
+    this.action_data.getPrimaryActions().subscribe(results => {
+      results.forEach((value) => this.primary_action_list.push(value));
+    });
+  }
+
+  getSecondaryActions() {
+    this.action_data.getSecondaryActions(this.new_action.primary_action_id).subscribe(results => {
+      while (this.secondary_action_list.length > 0) { this.secondary_action_list.pop(); }
+      results.forEach((value) => this.secondary_action_list.push(value));
+    });
+  }
+
+  getTertiaryActions() {
+    this.action_data.getTertiaryActions(this.new_action.secondary_action_id).subscribe(results => {
+      while (this.tertiary_action_list.length > 0) { this.tertiary_action_list.pop(); }
+      results.forEach((value) => this.tertiary_action_list.push(value));
+    });
+  }
+
+  addAction() {
+    if (this.scheduled && this.new_action.scheduled_date < this.new_action.entry_date) {
+      this.message = "Incorrect Scheduled Date";
+      return
+    }
+    this.added.emit(this.new_action);
+    this.setAction();
   }
 
 }
