@@ -32,6 +32,10 @@ export class HivesViewComponent implements OnInit {
     this.refreshHives();
   }
 
+  onAdd(new_hive: Hive) {
+    this.data.addHive(new_hive).subscribe(results => { this.refreshHives(); });
+  }
+
   getColor(hive: Hive): string {
     console.log('color checking');
     console.log('green hives');

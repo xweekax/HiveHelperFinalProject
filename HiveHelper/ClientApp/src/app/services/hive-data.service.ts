@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Location } from '../models/location';
 import { Hive } from '../models/hive';
+import { ApiResult } from '../models/api-result';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,18 @@ export class HiveDataService {
 
   constructor(@Inject('BASE_URL') private baseUrl: string, private http: HttpClient) { }
 
+  addYard(new_yard: Location): Observable<ApiResult> {
+    return this.http.post<ApiResult>(this.baseUrl + this.yardUrl, new_yard);
+  }
+
   getYards(): Observable<Location[]> {
     return this.http.get<Location[]>(this.baseUrl + this.yardUrl);
+  }
+
+  addHive(new_hive: Hive): Observable<ApiResult> {
+    new_hive.inspection_interval = +new_hive.inspection_interval;
+    console.log(new_hive);
+    return this.http.post<ApiResult>(this.baseUrl + this.hiveUrl, new_hive);
   }
 
   getHives(location_id: number): Observable<Hive[]> {

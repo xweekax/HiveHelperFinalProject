@@ -12,11 +12,11 @@ Hive ID:{{action.id}}
 <br />
   Completed: {{action.completed}}
 <br />
-  Entry Date: {{action.entry_date}}
+  Entry Date: {{action.entry_date | date: 'medium'}}
 <br />
-  Scheduled Date: {{action.scheduled_date}}
+  Scheduled Date: {{action.scheduled_date | date: 'medium'}}
 <br />
-  Completed Date: {{action.completed_date}}
+  Completed Date: {{action.completed_date | date: 'medium'}}
 <br />
 <button *ngIf="!action.completed" (click)="complete()">Complete Task</button>
 <br />
