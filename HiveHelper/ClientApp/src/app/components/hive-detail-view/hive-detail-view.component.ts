@@ -46,10 +46,16 @@ export class HiveDetailViewComponent implements OnInit {
 
   completeTask(action: ActionDetail) {
     action.completed = true;
+    action.completed_by_id = this.user_data.loggedIn.user.id;
+    action.completed_by_first_name = this.user_data.loggedIn.user.first_name;
+    action.completed_by_last_name = this.user_data.loggedIn.user.last_name;
     this.action_data.updateActionDetail(action).subscribe(response => {
       if (!response.result) {
         action.completed = false;
         this.message = "Failed to complete action";
+      }
+      else {
+        this.refreshActionDetails();
       }
     });
   }
@@ -59,7 +65,7 @@ export class HiveDetailViewComponent implements OnInit {
       if (response.result) {
         this.refreshActionDetails();
       }
-    })
+    });
   }
 
 }

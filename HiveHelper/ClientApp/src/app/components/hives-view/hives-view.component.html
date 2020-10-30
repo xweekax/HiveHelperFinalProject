@@ -1,5 +1,5 @@
 Hives in Yard
 <div *ngFor="let h of hives">
-  <app-card-link [link]="'Hive'" [data]="h.id" [title]="h.name"></app-card-link>
+  <app-card-link [link]="'Hive'" [data]="h.id" [title]="h.name" [color]="getColor(h)"></app-card-link>
 </div>
 

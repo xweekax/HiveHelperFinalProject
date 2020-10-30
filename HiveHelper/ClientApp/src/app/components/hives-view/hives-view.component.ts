@@ -12,9 +12,16 @@ import { UserDataService } from '../../services/user-data.service';
 })
 export class HivesViewComponent implements OnInit {
   hives: Hive[];
+  yellow_hives: Hive[];
+  red_hives: Hive[];
+  green_hives: Hive[];
+
   location_id: number;
   constructor(private data: HiveDataService, private user_data: UserDataService, private route: ActivatedRoute, private router: Router) {
     this.hives = [];
+    this.yellow_hives = [];
+    this.red_hives = [];
+    this.green_hives = [];
   }
 
   ngOnInit() {
@@ -25,11 +32,70 @@ export class HivesViewComponent implements OnInit {
     this.refreshHives();
   }
 
-  refreshHives() {
-    this.data.getHives(this.location_id).subscribe(results => {
-      while (this.hives.length > 0) { this.hives.pop(); }
-      results.forEach((value) => this.hives.push(value));
-    });
+  getColor(hive: Hive): string {
+    console.log('color checking');
+    console.log('green hives');
+    console.log(this.green_hives);
+    console.log('yellow hives');
+    console.log(this.yellow_hives);
+    console.log('red hives');
+    console.log(this.red_hives);
+    console.log('green hides includes our hives')
+    console.log(this.red_hives.includes(hive));
+    if (this.red_hives.includes(hive)) {
+      return 'red';
+    }
+    else if (this.green_hives.includes(hive)) {
+      return 'green';
+    }
+    else if (this.yellow_hives.includes(hive)) {
+      return 'yellow';
+    }
+    else {
+      return 'blue';
+    }
   }
 
+  refreshHives() {
+    this.data.getHives(this.location_id).subscribe(results => {
+      //clear out all hives lists to get new values.
+      while (this.hives.length > 0) { this.hives.pop(); }
+      while (this.green_hives.length > 0) { this.green_hives.pop(); }
+      while (this.yellow_hives.length > 0) { this.yellow_hives.pop(); }
+      while (this.red_hives.length > 0) { this.red_hives.pop(); }
+      //for each results add it to the hives.
+      results.forEach((value) => {
+        this.hives.push(value)
+
+        //check if it is green
+        this.data.getCheckedTodayHives(this.location_id).subscribe(results => {
+          results.forEach((h) => {
+            if (h.id == value.id) {
+              this.green_hives.push(value);
+            }
+          });
+        });
+
+        //check if it is yellow
+        this.data.getOverdueHives(this.location_id).subscribe(results => {
+          results.forEach((h) => {
+            if (h.id == value.id) {
+              this.yellow_hives.push(value);
+            }
+          });
+        });
+
+        //check if it is red
+        this.data.getUrgentHives(this.location_id).subscribe(results => {
+          results.forEach((h) => {
+            if (h.id == value.id) {
+              this.red_hives.push(value);
+            }
+          });
+        });
+
+
+      });
+    });
+  }
 }

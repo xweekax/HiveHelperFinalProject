@@ -1,40 +1,14 @@
 Hive Details
-<h2>Complete:</h2>
-<div *ngFor="let d of completedActions()">
-  Hive ID:{{d.id}}<br />
-  Primary Action: {{d.primary_action_name}}<br />
-  Secondary Action: {{d.secondary_action_name}}<br />
-  Tertiary Action: {{d.tertiary_action_name}}<br />
-  Entered By: {{d.entered_by_first_name}} {{d.entered_by_last_name}}<br />
-  Completed By: {{d.completed_by_first_name}} {{d.completed_by_last_name}}<br />
-  Completed: {{d.completed}}<br />
-  Entry Date: {{d.entry_date}}<br />
-  Scheduled Date: {{d.scheduled_date}}<br />
-  Completed Date: {{d.completed_date}}<br />
-  <br /><br />
-  Comments:<br />
-  {{d.comments}}
-
+<app-add-action-detail [hive_id]="hive_id" (added)="onAdd($event)"></app-add-action-detail>
+<h2>Incomplete:</h2>
+<div>
+  <app-action-detail-item *ngFor="let d of incompleteActions()" [action]="d" (completed)="completeTask($event)"></app-action-detail-item>
 </div>
 <p>{{message}}</p>
-<h2>Incomplete:</h2>
-<div *ngFor="let d of incompleteActions()">
-
-  Hive ID:{{d.id}}<br />
-  Primary Action: {{d.primary_action_name}}<br />
-  Secondary Action: {{d.secondary_action_name}}<br />
-  Tertiary Action: {{d.tertiary_action_name}}<br />
-  Entered By: {{d.entered_by_first_name}} {{d.entered_by_last_name}}<br />
-  Completed By: {{d.completed_by_first_name}} {{d.completed_by_last_name}}<br />
-  Completed: {{d.completed}}<br />
-  Entry Date: {{d.entry_date}}<br />
-  Scheduled Date: {{d.scheduled_date}}<br />
-  Completed Date: {{d.completed_date}}<br />
-  <button (click)="completeTask(d)">Complete Task</button>
-  <br /><br />
-  Comments:<br />
-  {{d.comments}}
-
+<h2>Complete:</h2>
+<div>
+  <app-action-detail-item *ngFor="let d of completedActions()" [action]="d"></app-action-detail-item>
 </div>
 
-<app-add-action-detail [hive_id]="hive_id" (added)="onAdd($event)"></app-add-action-detail>
+
+

@@ -65,6 +65,80 @@ namespace HiveHelper.Controllers
             bool result = data.UpdateHive(update_hive);
             return new { result };
         }
+
+        //green things
+        [HttpGet("filter/today/{location_id}")]
+        public IEnumerable<Hive> GetHivesInspectedToday(long location_id)
+        {
+            IEnumerable<Hive> location_hives = data.GetHives(location_id);
+            List<Hive> inspected_today = new List<Hive>();
+            foreach(Hive h in location_hives)
+            {
+                IEnumerable<ActionDetail> actions = data.GetActionDetails(h.id);
+                if(actions.Any(action => action.completed_date.Date == DateTime.Now.Date))
+                {
+                    inspected_today.Add(h);
+                }
+            }
+            return inspected_today;
+        }
+
+        //yello/red if too long things
+        [HttpGet("filter/overdue/{location_id}")]
+        public IEnumerable<Hive> GetHivesInspectionOverdue(long location_id)
+        {
+            IEnumerable<Hive> location_hives = data.GetHives(location_id);
+            List<Hive> overdue_inspections = new List<Hive>();
+            foreach (Hive h in location_hives)
+            {
+                IEnumerable<ActionDetail> actions = data.GetActionDetails(h.id);
+                DateTime completed;
+                if (actions.Count() > 0)
+                {
+                    completed = actions.First().completed_date;
+                    foreach (ActionDetail a in actions)
+                    {
+                        if(a.completed_date > completed)
+                        {
+                            completed = a.completed_date;
+                        }
+                    }
+                    if(completed.AddDays(h.inspection_interval) < DateTime.Now)
+                    {
+                        overdue_inspections.Add(h);
+                    }
+                }
+                else
+                {
+                    overdue_inspections.Add(h);
+                }
+            }
+            return overdue_inspections;
+        }
+
+        //yello/red if too long things
+        [HttpGet("filter/urgent/{location_id}")]
+        public IEnumerable<Hive> GetHivesUrgentAction(long location_id)
+        {
+            IEnumerable<Hive> location_hives = data.GetHives(location_id);
+            List<Hive> urgent_actions = new List<Hive>();
+            foreach (Hive h in location_hives)
+            {
+                IEnumerable<ActionDetail> actions = data.GetActionDetails(h.id);
+                if (actions.Count() > 0)
+                {
+                    if(actions.Any(action => (!action.completed && action.scheduled_date < DateTime.Now)))
+                    {
+                        urgent_actions.Add(h);
+                    }
+                }
+                else
+                {
+                    urgent_actions.Add(h);
+                }
+            }
+            return urgent_actions;
+        }
     }
 }
 
@@ -76,4 +150,7 @@ x - all hives in single yard = api/hives/in/id
 x - delete single hive = api/hives/id
 x - add a hive = api/hives     
 x - update a hive = api/hives/id
+X - api/hives/filter/today/id
+X - api/hives/filter/overdue/id
+    api/hives/filter/urgent/id
 */

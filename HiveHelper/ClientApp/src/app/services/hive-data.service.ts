@@ -25,7 +25,15 @@ export class HiveDataService {
     return this.http.get<Hive>(this.baseUrl + this.hiveUrl + `${hive_id}`);
   }
 
+  getCheckedTodayHives(location_id: number): Observable<Hive[]> {
+    return this.http.get<Hive[]>(this.baseUrl + this.hiveUrl + `filter/today/${location_id}`);
+  }
 
+  getOverdueHives(location_id: number): Observable<Hive[]> {
+    return this.http.get<Hive[]>(this.baseUrl + this.hiveUrl + `filter/overdue/${location_id}`);
+  }
 
-  
+  getUrgentHives(location_id: number): Observable<Hive[]> {
+    return this.http.get<Hive[]>(this.baseUrl + this.hiveUrl + `filter/urgent/${location_id}`);
+  }
 }
