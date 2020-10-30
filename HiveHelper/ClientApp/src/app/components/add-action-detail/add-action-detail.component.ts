@@ -82,6 +82,7 @@ export class AddActionDetailComponent implements OnInit {
     }
     else if (this.scheduled) {
       this.new_action.completed = false;
+      this.new_action.completed_date = this.new_action.scheduled_date;
     }
     this.added.emit(this.new_action);
     this.setAction();

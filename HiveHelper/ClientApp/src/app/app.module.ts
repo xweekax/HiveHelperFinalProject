@@ -13,6 +13,8 @@ import { HiveDetailViewComponent } from './components/hive-detail-view/hive-deta
 import { CardLinkComponent } from './components/card-link/card-link.component';
 import { AddActionDetailComponent } from './components/add-action-detail/add-action-detail.component';
 import { ActionDetailItemComponent } from './components/action-detail-item/action-detail-item.component';
+import { AddYardComponent } from './components/add-yard/add-yard.component';
+import { AddHiveComponent } from './components/add-hive/add-hive.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ActionDetailItemComponent } from './components/action-detail-item/actio
     HiveDetailViewComponent,
     CardLinkComponent,
     AddActionDetailComponent,
-    ActionDetailItemComponent
+    ActionDetailItemComponent,
+    AddYardComponent,
+    AddHiveComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

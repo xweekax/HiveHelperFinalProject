@@ -49,6 +49,7 @@ export class HiveDetailViewComponent implements OnInit {
     action.completed_by_id = this.user_data.loggedIn.user.id;
     action.completed_by_first_name = this.user_data.loggedIn.user.first_name;
     action.completed_by_last_name = this.user_data.loggedIn.user.last_name;
+    action.completed_date = new Date();
     this.action_data.updateActionDetail(action).subscribe(response => {
       if (!response.result) {
         action.completed = false;

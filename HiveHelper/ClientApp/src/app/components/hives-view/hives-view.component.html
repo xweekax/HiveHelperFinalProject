@@ -2,4 +2,6 @@ Hives in Yard
 <div *ngFor="let h of hives">
   <app-card-link [link]="'Hive'" [data]="h.id" [title]="h.name" [color]="getColor(h)"></app-card-link>
 </div>
+<br/>
+<app-add-hive [location_id]="location_id" (added)="onAdd($event)"></app-add-hive>
 

@@ -15,6 +15,7 @@ export class YardsViewComponent implements OnInit {
   redYards: Location[];
   allYards: Location[];
   search: string;
+
   constructor(private data: HiveDataService, private user_data: UserDataService, private router: Router) {
     this.allYards = [];
     this.greenYards = [];
@@ -27,6 +28,10 @@ export class YardsViewComponent implements OnInit {
       this.router.navigate(['LoginRequired']);
     }
     this.refreshYards();
+  }
+
+  onAdd(new_yard: Location) {
+    this.data.addYard(new_yard).subscribe(results => { this.refreshYards(); });
   }
 
   getColor(yard: Location): string {
