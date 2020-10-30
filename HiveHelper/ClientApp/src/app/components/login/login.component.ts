@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
     if (this.enterPassword == this.confirmPassword && this.enterPassword.match(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,16}$/)) {
       this.user.updatePassword('', this.enterPassword).subscribe(result => {
         this.user.loggedIn.user.password = ''; //reset the password to nothing, not stored here.
-        this.route.navigate(['Overview']);
+        this.router.navigate(['Overview']);
       });
     }
   }

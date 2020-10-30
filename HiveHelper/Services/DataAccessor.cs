@@ -20,8 +20,8 @@ namespace HiveHelper.Services
 
         public bool AddActionDetails(ActionDetail action)
         {
-            string enteredOn = action.entry_date.ToString("d");
-            string completedOn = action.completed_date.ToString("d");
+            string enteredOn = action.entry_date.ToShortDateString() + " " + action.entry_date.ToShortTimeString();
+            string completedOn = action.completed_date.ToShortDateString() + " " + action.completed_date.ToShortTimeString();
             string scheduledOn = action.scheduled_date.ToShortDateString() + " " + action.scheduled_date.ToShortTimeString();
             //int result = db.Execute("AddActionDetail", new { hiveid = action.hive_id, completedbyid = action.completed_by_id, enteredbyid = action.entered_by_id, primaryactionid = action.primary_action_id, secondaryactionid = action.secondary_action_id, tertiaryactionid = action.tertiary_action_id, completed = action.completed, entrydate = action.entry_date, scheduleddate = action.scheduled_date, completeddate = action.completed_date, comments = action.comments }, commandType: CommandType.StoredProcedure);
             string query = "INSERT INTO ActionDetail (hive_id, completed_by_id, entered_by_id, primary_action_id, secondary_action_id, tertiary_action_id, completed, entry_date, scheduled_date, completed_date, comments) VALUES (@hive_id, @completed_by_id, @entered_by_id, @primary_action_id, @secondary_action_id, @tertiary_action_id, @completed, @entry_date, @scheduled_date, @completed_date, @comments)";

@@ -1,4 +1,5 @@
 All Yards
-<div *ngFor="let y of yards">
-  <app-card-link [link]="'Yard'" [data]="y.id" [title]="y.name"></app-card-link>
+<input [(ngModel)]="search" placeholder="Search..." />
+<div *ngFor="let y of filterYards()">
+  <app-card-link [link]="'Yard'" [data]="y.id" [title]="y.name" [color]="getColor(y)"></app-card-link>
 </div>

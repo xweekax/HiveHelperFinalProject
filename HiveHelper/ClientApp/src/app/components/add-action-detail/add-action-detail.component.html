@@ -12,4 +12,6 @@ Tertiary Action:<select [(ngModel)]="new_action.tertiary_action_id">
 <br />
 <textarea [(ngModel)]="new_action.comments" placeholder="Comments"></textarea>
 <br/>
+<input type="checkbox" [(ngModel)]="scheduled" />
+<input *ngIf="scheduled" type="datetime-local" [(ngModel)]="new_action.scheduled_date" />
 <button (click)="addAction()">Submit</button>

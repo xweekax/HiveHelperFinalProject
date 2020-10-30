@@ -10,6 +10,7 @@ export class CardLinkComponent implements OnInit {
   @Input() link: string;
   @Input() data: string | number;
   @Input() title: string;
+  @Input() color: string;
 
   constructor() { }
 

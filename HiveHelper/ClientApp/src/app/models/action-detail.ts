@@ -7,9 +7,9 @@ export interface ActionDetail {
   completed_by_id: number;
   entered_by_id: number;
   completed: boolean;
-  entry_date: Date | string;
-  completed_date: Date | string;
-  scheduled_date: Date | string;
+  entry_date: Date;
+  completed_date: Date;
+  scheduled_date: Date;
   comments: string;
   primary_action_name: string;
   secondary_action_name: string;

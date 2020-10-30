@@ -80,6 +80,9 @@ export class AddActionDetailComponent implements OnInit {
       this.message = "Incorrect Scheduled Date";
       return
     }
+    else if (this.scheduled) {
+      this.new_action.completed = false;
+    }
     this.added.emit(this.new_action);
     this.setAction();
   }
