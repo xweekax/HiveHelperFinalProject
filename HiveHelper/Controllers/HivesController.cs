@@ -54,7 +54,7 @@ namespace HiveHelper.Controllers
 
         [HttpPost("")]
         public Object AddHive(Hive new_hive)
-        {
+        {            
             bool result = data.AddHive(new_hive);
             return new { result };
         }

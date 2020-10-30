@@ -1,7 +1,11 @@
-Hives in Yard
-<div *ngFor="let h of hives">
+Hives in Yard<br />
+<input type="checkbox" [(ngModel)]="displayGreen">Green<br>
+<input type="checkbox" [(ngModel)]="displayBlue">Blue<br>
+<input type="checkbox" [(ngModel)]="displayRed">Red<br>
+<input type="checkbox" [(ngModel)]="displayYellow">Yellow<br />
+<div *ngFor="let h of filterHives()">
   <app-card-link [link]="'Hive'" [data]="h.id" [title]="h.name" [color]="getColor(h)"></app-card-link>
 </div>
-<br/>
+<br />
 <app-add-hive [location_id]="location_id" (added)="onAdd($event)"></app-add-hive>
 

@@ -9,12 +9,18 @@ import { Router } from '@angular/router';
   templateUrl: './yards-view.component.html',
   styleUrls: ['./yards-view.component.css']
 })
+
 export class YardsViewComponent implements OnInit {
   greenYards: Location[];
   yellowYards: Location[];
   redYards: Location[];
   allYards: Location[];
   search: string;
+
+  displayGreen: boolean;
+  displayBlue: boolean;
+  displayRed: boolean;
+  displayYellow: boolean;
 
   constructor(private data: HiveDataService, private user_data: UserDataService, private router: Router) {
     this.allYards = [];
@@ -50,14 +56,36 @@ export class YardsViewComponent implements OnInit {
   }
 
   filterYards(): Location[] {
-    if (!this.allYards) {
+
+    let displayYards: Location[] = [];
+    if ((!this.displayGreen && !this.displayBlue && !this.displayRed && !this.displayYellow) || (this.displayGreen && this.displayBlue && this.displayRed && this.displayYellow)) {
+      displayYards = this.allYards;
+    }
+    else {
+      this.allYards.forEach((value) => {
+        if (this.redYards.includes(value) && this.displayRed) {
+          displayYards.push(value)
+        }
+        if (this.greenYards.includes(value) && this.displayGreen) {
+          displayYards.push(value)
+        }
+        if ((!this.redYards.includes(value) && !this.greenYards.includes(value) && !this.yellowYards.includes(value)) && this.displayBlue) {
+          displayYards.push(value)
+        }
+        if (this.yellowYards.includes(value) && !this.redYards.includes(value) && this.displayYellow) {
+          displayYards.push(value)
+        }
+      });
+    }
+
+    if (!displayYards) {
       return [];
     }
     else if (!this.search) {
-      return this.allYards;
+      return displayYards;
     }
     else {
-      return this.allYards.filter(x => x.name.includes(this.search));
+      return displayYards.filter(x => x.name.includes(this.search));
     }
   }
 

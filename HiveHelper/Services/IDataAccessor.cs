@@ -9,7 +9,6 @@ namespace HiveHelper.Services
     public interface IDataAccessor
     {
         public IEnumerable<Location> GetYards();
-        //public IEnumerable<Location> GetYards(string name);
         public Location GetYard(long id);
         public IEnumerable<Hive> GetHives(long location_id);
         public bool AddHive(Hive add_hive);

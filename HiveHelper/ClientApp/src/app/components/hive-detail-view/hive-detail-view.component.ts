@@ -5,19 +5,21 @@ import { Route, ActivatedRoute, Router } from '@angular/router';
 import { Hive } from '../../models/hive';
 import { ActionDetail } from '../../models/action-detail';
 import { UserDataService } from '../../services/user-data.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-hive-detail-view',
   templateUrl: './hive-detail-view.component.html',
   styleUrls: ['./hive-detail-view.component.css']
 })
+
 export class HiveDetailViewComponent implements OnInit {
   hive: Hive;
   hive_id: number;
   details: ActionDetail[];
   message: string;
   
-  constructor(private hive_data: HiveDataService, private action_data:  ActionDataService, private route: ActivatedRoute, private user_data: UserDataService, private router: Router) {
+  constructor(private hive_data: HiveDataService, private action_data:  ActionDataService, private route: ActivatedRoute, private user_data: UserDataService, private router: Router, private _location: Location) {
     this.details = [];
   }
 
@@ -26,7 +28,12 @@ export class HiveDetailViewComponent implements OnInit {
       this.router.navigate(['LoginRequired']);
     }
     this.hive_id = +this.route.snapshot.paramMap.get("hive_id");
+    this.hive_data.getHive(this.hive_id).subscribe(result => { this.hive = result });
     this.refreshActionDetails();
+  }
+
+  goBack() {
+    this._location.back();
   }
 
   refreshActionDetails() {

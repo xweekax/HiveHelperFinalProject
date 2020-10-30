@@ -10,11 +10,17 @@ import { UserDataService } from '../../services/user-data.service';
   templateUrl: './hives-view.component.html',
   styleUrls: ['./hives-view.component.css']
 })
+
 export class HivesViewComponent implements OnInit {
   hives: Hive[];
   yellow_hives: Hive[];
   red_hives: Hive[];
   green_hives: Hive[];
+  search: string;
+  displayGreen: boolean;
+  displayBlue: boolean;
+  displayRed: boolean;
+  displayYellow: boolean;
 
   location_id: number;
   constructor(private data: HiveDataService, private user_data: UserDataService, private route: ActivatedRoute, private router: Router) {
@@ -57,6 +63,40 @@ export class HivesViewComponent implements OnInit {
     }
     else {
       return 'blue';
+    }
+  }
+
+  filterHives(): Hive[] {
+
+    let displayHives: Hive[] = [];
+    if ((!this.displayGreen && !this.displayBlue && !this.displayRed && !this.displayYellow) || (this.displayGreen && this.displayBlue && this.displayRed && this.displayYellow)) {
+      displayHives = this.hives;
+    }
+    else {
+      this.hives.forEach((value) => {
+        if (this.red_hives.includes(value) && this.displayRed) {
+          displayHives.push(value)
+        }
+        if (this.green_hives.includes(value) && this.displayGreen) {
+          displayHives.push(value)
+        }
+        if ((!this.red_hives.includes(value) && !this.green_hives.includes(value) && !this.yellow_hives.includes(value)) && this.displayBlue) {
+          displayHives.push(value)
+        }
+        if (this.yellow_hives.includes(value) && !this.red_hives.includes(value) && this.displayYellow) {
+          displayHives.push(value)
+        }
+      });
+    }
+
+    if (!displayHives) {
+      return [];
+    }
+    else if (!this.search) {
+      return displayHives;
+    }
+    else {
+      return displayHives.filter(x => x.name.includes(this.search));
     }
   }
 
