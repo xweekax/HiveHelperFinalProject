@@ -1,0 +1,26 @@
+Hive ID:{{action.id}}
+<br />
+  Primary Action: {{action.primary_action_name}}
+<br />
+  Secondary Action: {{action.secondary_action_name}}
+<br />
+  Tertiary Action: {{action.tertiary_action_name}}
+<br />
+  Entered By: {{action.entered_by_first_name}} {{action.entered_by_last_name}}
+<br />
+  Completed By: {{action.completed_by_first_name}} {{action.completed_by_last_name}}
+<br />
+  Completed: {{action.completed}}
+<br />
+  Entry Date: {{action.entry_date}}
+<br />
+  Scheduled Date: {{action.scheduled_date}}
+<br />
+  Completed Date: {{action.completed_date}}
+<br />
+<button *ngIf="!action.completed" (click)="complete()">Complete Task</button>
+<br />
+<br />
+  Comments:
+<br />
+{{action.comments}}
