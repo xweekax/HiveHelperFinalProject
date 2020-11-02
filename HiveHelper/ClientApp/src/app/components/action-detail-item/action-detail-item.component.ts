@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActionDetail } from '../../models/action-detail';
+import { UserDataService } from '../../services/user-data.service';
 
 @Component({
   selector: 'app-action-detail-item',
@@ -9,7 +10,7 @@ import { ActionDetail } from '../../models/action-detail';
 export class ActionDetailItemComponent implements OnInit {
   @Input() action: ActionDetail;
   @Output() completed: EventEmitter<ActionDetail> = new EventEmitter();
-  constructor() { }
+  constructor(private user_data: UserDataService) { }
 
   ngOnInit() {
   }

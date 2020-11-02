@@ -13,6 +13,7 @@ namespace HiveHelper.Services
         public IEnumerable<Hive> GetHives(long location_id);
         public bool AddHive(Hive add_hive);
         public bool DeleteHive(long id);
+        public Hive GetHive(long id);
         public IEnumerable<PrimaryAction> GetPrimaryActions();
         public IEnumerable<SecondaryAction> GetSecondaryActions(long primary_id);
         public IEnumerable<TertiaryAction> GetTertiaryActions(long secondary_id);
