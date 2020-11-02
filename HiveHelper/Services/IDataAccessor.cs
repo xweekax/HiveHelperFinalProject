@@ -31,6 +31,7 @@ namespace HiveHelper.Services
         // user 
         public User GetUser(string username);
         public bool AddUser(User new_user);
-        public bool UpdateUser(User user);        
+        public bool UpdateUser(User user);
+        public IEnumerable<Permission> GetPermissions(long access_level);
     }
 }

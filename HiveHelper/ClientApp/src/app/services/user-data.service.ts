@@ -22,6 +22,7 @@ export class UserDataService {
 
   //adduser
   addUser(user: User): Observable<ApiResult> {
+    user.access_level = +user.access_level;
     return this.http.post(this.baseUrl + this.userUrl, user);
   }
 
