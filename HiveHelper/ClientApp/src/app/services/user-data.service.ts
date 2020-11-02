@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResult } from '../models/api-result';
 import { User } from '../models/user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +12,19 @@ export class UserDataService {
   userUrl: string = 'api/users';
   loggedIn: ApiResult;
 
-  constructor(@Inject('BASE_URL') private baseUrl: string, private http: HttpClient) {
+  constructor(@Inject('BASE_URL') private baseUrl: string, private http: HttpClient, private router: Router) {
     this.loggedIn = {};
   }
 
   //login
   login(username: string, password: string): Observable<ApiResult> {
     return this.http.get<ApiResult>(this.baseUrl + this.userUrl + `/${username}/${password}`);
+  }
+
+  logOut() {
+
+    this.loggedIn = {};
+    this.router.navigate(['/Login']);
   }
 
   //adduser

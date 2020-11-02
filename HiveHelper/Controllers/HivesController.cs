@@ -45,6 +45,12 @@ namespace HiveHelper.Controllers
             return new { result };
         }
 
+        [HttpGet("{id}")]
+        public Hive GetHive(long id)
+        {
+            return data.GetHive(id);
+        }
+
         [HttpDelete("{id}")]
         public Object RemoveHive(long id)
         {

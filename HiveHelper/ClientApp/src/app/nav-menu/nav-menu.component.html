@@ -27,7 +27,11 @@
           >
             <a class="nav-link text-dark" [routerLink]="['/Overview']">Home</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li *ngIf="user_data.loggedIn.result">
+            <a class="nav-link text-dark" [routerLink]="['/Login']"(click)="user_data.logOut()">Log Out</a>
+          </li>
+
+          <li *ngIf="user_data.loggedIn.permissions?.includes('admin')" class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/AdminView']"
               >Admin View</a
             >

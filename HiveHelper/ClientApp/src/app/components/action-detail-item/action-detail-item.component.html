@@ -6,10 +6,13 @@ Hive ID:{{action.id}}
 <br />
   Tertiary Action: {{action.tertiary_action_name}}
 <br />
+<ng-container *ngIf="user_data.loggedIn.permissions?.includes('leader')">
   Entered By: {{action.entered_by_first_name}} {{action.entered_by_last_name}}
-<br />
+  <br />
   Completed By: {{action.completed_by_first_name}} {{action.completed_by_last_name}}
-<br />
+  <br />
+</ng-container>
+  
   Completed: {{action.completed}}
 <br />
   Entry Date: {{action.entry_date | date: 'medium'}}

@@ -79,6 +79,12 @@ namespace HiveHelper.Services
             return db.Query<ActionDetail>("GetActionDetails", new { hive_id }, commandType: CommandType.StoredProcedure);            
         }
 
+        public Hive GetHive(long id)
+        {
+            string query = "SELECT * FROM Hive WHERE id = @id";
+            return db.QuerySingle<Hive>(query, new { id });
+        }
+
         public IEnumerable<Hive> GetHives(long location_id)
         {
             string query = "SELECT * FROM Hive WHERE location_id = @location_id";
