@@ -15,6 +15,8 @@ import { AddActionDetailComponent } from './components/add-action-detail/add-act
 import { ActionDetailItemComponent } from './components/action-detail-item/action-detail-item.component';
 import { AddYardComponent } from './components/add-yard/add-yard.component';
 import { AddHiveComponent } from './components/add-hive/add-hive.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
+import { AdminViewComponent } from './components/admin-view/admin-view.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { AddHiveComponent } from './components/add-hive/add-hive.component';
     AddActionDetailComponent,
     ActionDetailItemComponent,
     AddYardComponent,
-    AddHiveComponent
+    AddHiveComponent,
+    AddUserComponent,
+    AdminViewComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -40,7 +44,8 @@ import { AddHiveComponent } from './components/add-hive/add-hive.component';
       { path: 'Overview', pathMatch: 'full', component: YardsViewComponent },
       { path: 'Yard/:location_id', pathMatch: 'full', component: HivesViewComponent },
       { path: 'Hive/:hive_id', pathMatch: 'full', component: HiveDetailViewComponent },
-      { path: 'LoginRequired', pathMatch: 'full', component: LoginComponent, data: {message: "You must login to use the site."} }
+      { path: 'LoginRequired', pathMatch: 'full', component: LoginComponent, data: { message: "You must login to use the site." }},
+      { path: 'AdminView', pathMatch: 'full', component: AdminViewComponent,}
     ])
   ],
   providers: [],

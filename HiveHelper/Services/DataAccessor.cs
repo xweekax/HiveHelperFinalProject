@@ -85,6 +85,12 @@ namespace HiveHelper.Services
             return db.Query<Hive>(query, new { location_id });            
         }
 
+        public IEnumerable<Permission> GetPermissions(long access_level)
+        {
+            string query = "SELECT * FROM Permission WHERE access_level <= @access_level";
+            return db.Query<Permission>(query, new { access_level });
+        }
+
         public IEnumerable<PrimaryAction> GetPrimaryActions()
         {
             string query = "SELECT * FROM PrimaryAction";

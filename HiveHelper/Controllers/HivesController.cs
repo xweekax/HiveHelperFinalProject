@@ -66,6 +66,27 @@ namespace HiveHelper.Controllers
             return new { result };
         }
 
+        private DateTime GetCompletedDate(IEnumerable<ActionDetail> actions)
+        {
+            if (actions.Count() > 0 && actions.Any(x => x.completed))
+            {
+                DateTime completed = actions.Where(x => x.completed).First().completed_date;
+                foreach (ActionDetail a in actions)
+                {
+                    if (a.completed_date > completed && a.completed)
+                    {
+                        completed = a.completed_date;
+                    }
+                }
+                return completed;
+            }
+            else
+            {
+                return default;
+            }
+        }
+
+
         //green things
         [HttpGet("filter/today/{location_id}")]
         public IEnumerable<Hive> GetHivesInspectedToday(long location_id)
@@ -75,7 +96,7 @@ namespace HiveHelper.Controllers
             foreach(Hive h in location_hives)
             {
                 IEnumerable<ActionDetail> actions = data.GetActionDetails(h.id);
-                if(actions.Any(action => action.completed_date.Date == DateTime.Now.Date))
+                if(actions.Any(action => action.completed_date.Date == DateTime.Now.Date && action.completed))
                 {
                     inspected_today.Add(h);
                 }
@@ -93,12 +114,12 @@ namespace HiveHelper.Controllers
             {
                 IEnumerable<ActionDetail> actions = data.GetActionDetails(h.id);
                 DateTime completed;
-                if (actions.Count() > 0)
+                if (actions.Count() > 0 && actions.Any(x => x.completed))
                 {
-                    completed = actions.First().completed_date;
+                    completed = actions.Where(x => x.completed).First().completed_date;
                     foreach (ActionDetail a in actions)
                     {
-                        if(a.completed_date > completed)
+                        if(a.completed_date > completed && a.completed)
                         {
                             completed = a.completed_date;
                         }
@@ -128,6 +149,10 @@ namespace HiveHelper.Controllers
                 if (actions.Count() > 0)
                 {
                     if(actions.Any(action => (!action.completed && action.scheduled_date < DateTime.Now)))
+                    {
+                        urgent_actions.Add(h);
+                    }
+                    else if (GetCompletedDate(actions).AddDays(h.inspection_interval * 1.5) < DateTime.Now)
                     {
                         urgent_actions.Add(h);
                     }

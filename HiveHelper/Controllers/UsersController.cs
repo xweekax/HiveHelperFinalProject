@@ -43,6 +43,20 @@ namespace HiveHelper.Controllers
             return ParsePassword(toParse);
         }
 
+        private List<string> GetPermission(long access_level)
+        {
+            IEnumerable<Permission> permissions = data.GetPermissions(access_level);
+
+            List<string> results = new List<string>();
+
+            foreach(Permission p in permissions)
+            {
+                results.Add(p.name);
+            }
+
+            return results;
+        }
+
         [HttpGet("{username}/{password?}")]
         public Object Login(string username, string password)
         {
@@ -50,6 +64,7 @@ namespace HiveHelper.Controllers
 
             bool result;
             string status;
+            List<string> permissions = null;
 
             if(found == null)
             {
@@ -60,12 +75,14 @@ namespace HiveHelper.Controllers
             {
                 status = "new";
                 result = true;
+                permissions = GetPermission(found.access_level);
             }
             else if (found.password == ExtraMethod(password))
             {
                 status = "success";
                 found.password = null;
                 result = true;
+                permissions = GetPermission(found.access_level);
             }
             else
             {
@@ -73,7 +90,7 @@ namespace HiveHelper.Controllers
                 found = null;
                 result = false;
             }
-            return new { result, status, user = found };
+            return new { result, status, user = found, permissions };
         }
         [HttpPost]
         public Object AddUser(User user)
