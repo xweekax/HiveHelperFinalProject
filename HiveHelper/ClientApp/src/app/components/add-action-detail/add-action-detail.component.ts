@@ -52,16 +52,26 @@ export class AddActionDetailComponent implements OnInit {
       entered_by_first_name: '',
       entered_by_last_name: ''
     }
+    this.getPrimaryActions();
   }
 
   ngOnInit() {
     this.setAction();
+  }
+
+  getPrimaryActions() {
+    this.primary_action_list = [];
+    this.secondary_action_list = [];
+    this.tertiary_action_list = [];
     this.action_data.getPrimaryActions().subscribe(results => {
       results.forEach((value) => this.primary_action_list.push(value));
     });
   }
 
   getSecondaryActions() {
+    this.new_action.secondary_action_id = 0;
+    this.new_action.tertiary_action_id = 0;
+    this.tertiary_action_list = [];
     this.action_data.getSecondaryActions(this.new_action.primary_action_id).subscribe(results => {
       while (this.secondary_action_list.length > 0) { this.secondary_action_list.pop(); }
       results.forEach((value) => this.secondary_action_list.push(value));

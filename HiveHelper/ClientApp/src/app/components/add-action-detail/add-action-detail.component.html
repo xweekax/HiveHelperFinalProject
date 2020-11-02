@@ -1,17 +1,28 @@
-Primary Action:<select [(ngModel)]="new_action.primary_action_id" (change)="getSecondaryActions()">
-  <option *ngFor="let a of primary_action_list" [value]="a.id">{{a.name}}</option>
-</select>
-<br />
-Secondary Action:<select [(ngModel)]="new_action.secondary_action_id" (change)="getTertiaryActions()">
-  <option *ngFor="let a of secondary_action_list" [value]="a.id">{{a.name}}</option>
-</select>
-<br />
-Tertiary Action:<select [(ngModel)]="new_action.tertiary_action_id">
-  <option *ngFor="let a of tertiary_action_list" [value]="a.id">{{a.name}}</option>
-</select>
-<br />
+<div>
+  <div>
+    <select [(ngModel)]="new_action.primary_action_id" (change)="getSecondaryActions()">
+      <option value="0" disabled selected>Select Action</option>
+      <option *ngFor="let a of primary_action_list" [value]="a.id">{{a.name}}</option>
+    </select>
+    <ng-container *ngIf="secondary_action_list.length > 0">
+      <select [(ngModel)]="new_action.secondary_action_id" (change)="getTertiaryActions()">
+        <option value="0" disabled selected>Select Action</option>
+        <option *ngFor="let a of secondary_action_list" [value]="a.id">{{a.name}}</option>
+      </select>
+    </ng-container>
+    <ng-container *ngIf="tertiary_action_list.length > 0">
+      <select [(ngModel)]="new_action.tertiary_action_id">
+        <option value="0" disabled selected>Select Action</option>
+        <option *ngFor="let a of tertiary_action_list" [value]="a.id">{{a.name}}</option>
+      </select>
+    </ng-container>
+  </div>
+  <br />
+  
 <textarea [(ngModel)]="new_action.comments" placeholder="Comments"></textarea>
-<br/>
-<input type="checkbox" [(ngModel)]="scheduled" />
-<input *ngIf="scheduled" type="datetime-local" [(ngModel)]="new_action.scheduled_date" />
-<button (click)="addAction()">Submit</button>
+  <br />
+  <label>Schedule: &nbsp;<input type="checkbox" [(ngModel)]="scheduled" /></label>
+  <input *ngIf="scheduled" type="datetime-local" [(ngModel)]="new_action.scheduled_date" /><br />
+  <button (click)="addAction()">Submit</button>
+
+</div>

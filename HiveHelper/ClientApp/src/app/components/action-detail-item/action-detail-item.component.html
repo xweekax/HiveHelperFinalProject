@@ -1,29 +1,26 @@
-Hive ID:{{action.id}}
-<br />
-  Primary Action: {{action.primary_action_name}}
-<br />
-  Secondary Action: {{action.secondary_action_name}}
-<br />
-  Tertiary Action: {{action.tertiary_action_name}}
-<br />
-<ng-container *ngIf="user_data.loggedIn.permissions?.includes('leader')">
-  Entered By: {{action.entered_by_first_name}} {{action.entered_by_last_name}}
+<div class="action-item">
+  {{action.primary_action_name}} - {{action.secondary_action_name}} - {{action.tertiary_action_name}}
   <br />
-  Completed By: {{action.completed_by_first_name}} {{action.completed_by_last_name}}
+  <ng-container *ngIf="user_data.loggedIn.permissions?.includes('leader')">
+    Entered By: {{action.entered_by_first_name}} {{action.entered_by_last_name}}
+    <br />
+    Completed By: {{action.completed_by_first_name}} {{action.completed_by_last_name}}
+    <br />
+  </ng-container>
+  Entered On: {{action.entry_date | date: 'medium'}}
   <br />
-</ng-container>
+  <ng-container *ngIf="!action.completed">
+    Scheduled For: {{action.scheduled_date | date: 'medium'}}
+    <br />
+  </ng-container>
+  <ng-container *ngIf="action.completed">
+    Completed On: {{action.completed_date | date: 'medium'}}
+    <br />
+  </ng-container>
   
-  Completed: {{action.completed}}
-<br />
-  Entry Date: {{action.entry_date | date: 'medium'}}
-<br />
-  Scheduled Date: {{action.scheduled_date | date: 'medium'}}
-<br />
-  Completed Date: {{action.completed_date | date: 'medium'}}
-<br />
-<button *ngIf="!action.completed" (click)="complete()">Complete Task</button>
-<br />
-<br />
   Comments:
-<br />
-{{action.comments}}
+  <br />
+  {{action.comments}}
+  <br />
+  <button *ngIf="!action.completed" (click)="complete()">Complete Task</button>
+</div>
