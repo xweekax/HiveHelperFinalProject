@@ -21,3 +21,13 @@ code {
     align-items: center;
     text-align: center;
 }
+
+body {
+  background-image: url("C:\devbuild4\Final Hive Helper\HiveHelperFinalProject\HiveHelper\ClientApp\src\assets\flowerstream.png" );
+  background-repeat: no-repeat;
+  background-size: cover;  
+}
+
+background-image {
+  opacity: 0.5;
+}
