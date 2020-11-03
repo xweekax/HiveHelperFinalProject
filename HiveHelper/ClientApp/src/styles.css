@@ -35,7 +35,9 @@ body {
 .bottom-bee{
     top: 80vh;
     left: 0%;
+    position: fixed;
 }
+
 
 /**
  * ----------------------------------------
