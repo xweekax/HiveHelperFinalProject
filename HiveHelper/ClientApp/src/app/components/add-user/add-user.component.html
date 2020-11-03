@@ -1,11 +1,16 @@
 <h2>Add A User</h2>
+
+<input placeholder="First Name" [(ngModel)]="new_user.first_name" />
 <br />
-First Name: <input [(ngModel)]="new_user.first_name" />
 <br />
-Last Name: <input [(ngModel)]="new_user.last_name" />
+<input placeholder="Last Name" [(ngModel)]="new_user.last_name" />
 <br />
-Access Level: <input [(ngModel)]="new_user.access_level" />
 <br />
-Username: <input [(ngModel)]="new_user.username" />
+<input placeholder="Access Level" [(ngModel)]="new_user.access_level" />
+<br />
+<br />
+<input placeholder="Username" [(ngModel)]="new_user.username" />
+<br />
+<br />
 
 <button (click)="addUser()">Add User</button>

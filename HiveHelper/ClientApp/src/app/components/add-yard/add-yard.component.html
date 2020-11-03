@@ -1,6 +1,10 @@
-<h2>Add A Yard</h2><br/>
-Name:
-<input (keyup.enter)="addYard()" [(ngModel)]="new_yard.name"/><br/>
-Address:
-<input (keyup.enter)="addYard()" [(ngModel)]="new_yard.address"/><br/><br/>
+<br />
+<h2>Add A Yard</h2>
+
+<input placeholder="Name" (keyup.enter)="addYard()" [(ngModel)]="new_yard.name"/>
+<br/>
+<br/>
+<input placeholder="Address" (keyup.enter)="addYard()" [(ngModel)]="new_yard.address"/>
+<br/>
+<br/>
 <button (click)="addYard()">Add Yard</button>
