@@ -10,6 +10,7 @@ import { UserDataService } from '../../services/user-data.service';
 export class ActionDetailItemComponent implements OnInit {
   @Input() action: ActionDetail;
   @Output() completed: EventEmitter<ActionDetail> = new EventEmitter();
+  imgPath = '../../../assets/honeycomb1.jpg';
   constructor(private user_data: UserDataService) { }
 
   ngOnInit() {

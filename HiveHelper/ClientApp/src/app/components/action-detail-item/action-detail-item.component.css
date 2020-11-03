@@ -1,11 +1,13 @@
 .action-item {
-    margin-bottom: 15px;
-    box-shadow: 0px 0px 5px 0px rgba(255, 255, 0, 0.75);
-    display: inline-block;
-    width: auto;
-    margin-right: 15px;
-    padding: 5px 5px 5px 5px;
-    background-color: rgb(232, 210, 20);
+  margin-bottom: 15px;
+  box-shadow: 0px 0px 5px 0px rgba(255, 255, 0, 0.75);
+  display: inline-block;
+  width: auto;
+  margin-right: 15px;
+  padding: 5px 5px 5px 5px;
+  background-image: url("../../../assets/honeycomb1.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .right-button {
