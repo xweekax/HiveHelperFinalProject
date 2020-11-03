@@ -5,9 +5,9 @@
   width: auto;
   margin-right: 15px;
   padding: 5px 5px 5px 5px;
-  background-image: url("../../../assets/honeycomb1.jpg");
-  background-size: cover;
-  background-position: center;
+  font-weight: bold;
+  border-radius: 15px;
+  background-color: rgba(232, 220, 20, 0.25);
 }
 
 .right-button {
