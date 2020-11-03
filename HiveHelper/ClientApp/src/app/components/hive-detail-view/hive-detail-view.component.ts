@@ -39,7 +39,7 @@ export class HiveDetailViewComponent implements OnInit {
   refreshActionDetails() {
     this.action_data.getActionDetails(this.hive_id).subscribe(results => {
       while (this.details.length > 0) { this.details.pop(); }
-      results.forEach((value) => this.details.push(value));
+      results.forEach((value) => this.details.unshift(value));
     });
   }
 

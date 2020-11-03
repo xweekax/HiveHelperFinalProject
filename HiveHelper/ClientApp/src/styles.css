@@ -85,13 +85,24 @@ body {
 
 .slide-in-left {
   animation: slide-in-left 6.5s infinite cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  left: 0%;
+  position: fixed;
+}
+
+.slide-in-right {
+  animation: slide-in-left reverse 8.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite both;
+  left: 0%;
+  position: fixed;
 }
 
 .bottom-bee{
     top: 80vh;
-    left: 0%;
-    position: fixed;
 }
+
+.top-bee{
+    top: 40vh;
+}
+
 
 /**
  * ----------------------------------------
@@ -114,6 +125,29 @@ body {
    /* transform: translateX(1300px);*/
    transform: translateX(110vw);
     opacity: 0;
+  }
+}
+
+/**
+ * ----------------------------------------
+ * animation slide-in-right
+ * ----------------------------------------
+ */
+
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(110vw);
+    opacity: 0;
+  }
+
+  50%{
+      transform: translateX(50vw);
+      opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-10vw);
+    opacity: 1;
   }
 }
 
