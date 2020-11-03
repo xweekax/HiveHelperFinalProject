@@ -1,6 +1,6 @@
 <header>
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+    class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3"
   >
     <div class="container">
       <a class="navbar-brand" [routerLink]="['/']">HiveHelper</a>
@@ -25,14 +25,14 @@
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link text-dark" [routerLink]="['/Overview']">Home</a>
+            <a class="nav-link" [routerLink]="['/Overview']">Home</a>
           </li>
           <li *ngIf="user_data.loggedIn.result">
-            <a class="nav-link text-dark" [routerLink]="['/Login']"(click)="user_data.logOut()">Log Out</a>
+            <a class="nav-link" [routerLink]="['/Login']"(click)="user_data.logOut()">Log Out</a>
           </li>
 
           <li *ngIf="user_data.loggedIn.permissions?.includes('admin')" class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/AdminView']"
+            <a class="nav-link" [routerLink]="['/AdminView']"
               >Admin View</a
             >
           </li>
