@@ -34,13 +34,11 @@ nav {
 }
 
 .navbar-brand{
-    color:black;
-    
+    color:black;    
 }
 
 .nav-item:hover {
-  background-color: black;
-  
+  background-color: black;  
 }
 
 .nav-link {
@@ -53,4 +51,14 @@ nav {
 
 .nav-link:hover {
   color: yellow;
+}
+
+body {
+  background-image: url("..\src\assets\flowerstream.png");
+  background-repeat: no-repeat;
+  background-size: cover;  
+}
+
+background-image {
+  opacity: 0.5;
 }
