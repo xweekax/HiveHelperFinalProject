@@ -15,48 +15,66 @@ code {
   border-color: #1861ac;
 }
 
-.container{
-    display: flex;
-    align-content: center;
-    align-items: center;
-    text-align: center;
+.container {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 nav {
-  background-image: url('assets/Images/HoneyCombs.jpeg');
-  background-position:center;
-  background-size: cover;
+  /*background-image: url('assets/Images/HoneyCombs.jpeg');
+  background-position: center;
+  background-size: cover;*/
+  background-color: rgb(232, 210, 20);
+  
 }
 
 .navbar-brand:hover {
   background-color: black;
-  color:yellow;
+  color: rgb(232, 210, 20);
+  border: groove;
+  border-color: rgb(232, 210, 20);
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
-.navbar-brand{
-    color:black;    
+.navbar-brand {
+  color: black;
+  font-weight: 700;
 }
 
 .nav-item:hover {
-  background-color: black;  
+  /* background-color: black;
+  color: yellow;
+  border: groove;
+  border-color: yellow;
+  padding-top: 10px;
+  padding-bottom: 10px;*/
 }
 
 .nav-link {
   color: black;
+  font-weight: 700;
 }
 
-.nav-link:active {
-  color: yellow;
-}
+  .nav-link:active {
+    color: rgb(232, 210, 20);
+  }
 
-.nav-link:hover {
-  color: yellow;
-}
+  .nav-link:hover {
+    background-color: black;
+    color: rgb(232, 210, 20);
+    border: groove;
+    border-color: rgb(232, 210, 20);
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
 
 body {
   background-image: url("..\src\assets\flowerstream.png");
   background-repeat: no-repeat;
-  background-size: cover;  
+  background-size:cover;  
 }
 
 background-image {
