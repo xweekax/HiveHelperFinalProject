@@ -16,10 +16,14 @@ code {
 }
 
 .container {
-  display: flex;
-  align-content: center;
-  align-items: center;
-  text-align: center;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    align-self: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
 }
 
 nav {
@@ -72,7 +76,7 @@ nav {
   }
 
 body {
-  background-image: url("..\src\assets\flowerstream.png");
+  background-image: url("..\src\assets\flowerstream.png" );
   background-repeat: no-repeat;
   background-size:cover;  
 }
@@ -110,3 +114,11 @@ body {
   }
 }
 
+.page-header {
+  width: auto;
+}
+
+.left-button {
+  position: relative;
+  float: left;
+}
