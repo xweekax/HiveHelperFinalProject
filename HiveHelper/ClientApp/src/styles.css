@@ -78,7 +78,9 @@ nav {
 body {
   background-image: url("..\src\assets\flowerstream.png" );
   background-repeat: no-repeat;
-  background-size:cover;  
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .slide-in-left {
@@ -88,6 +90,7 @@ body {
 .bottom-bee{
     top: 80vh;
     left: 0%;
+    position: fixed;
 }
 
 /**
