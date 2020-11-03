@@ -59,6 +59,36 @@ body {
   background-size: cover;  
 }
 
-background-image {
-  opacity: 0.5;
+.slide-in-left {
+  animation: slide-in-left 6.5s infinite cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
+
+.bottom-bee{
+    top: 80vh;
+    left: 0%;
+}
+
+/**
+ * ----------------------------------------
+ * animation slide-in-left
+ * ----------------------------------------
+ */
+@keyframes slide-in-left {
+  0% {
+    /*transform: translateX(-1000px);*/
+    transform: translateX(-10vw);
+    opacity: 0;
+  }
+
+  50%{
+      transform: translateX(50vw);
+      opacity: 1;
+  }
+
+  100% {
+   /* transform: translateX(1300px);*/
+   transform: translateX(110vw);
+    opacity: 0;
+  }
+}
+
