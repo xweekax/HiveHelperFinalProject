@@ -1,5 +1,5 @@
-<div>
-  <div>
+<div class="container-box">
+  <div class="left-box">
     <select [(ngModel)]="new_action.primary_action_id" (change)="getSecondaryActions()">
       <option value="0" disabled selected>Select Action</option>
       <option *ngFor="let a of primary_action_list" [value]="a.id">{{a.name}}</option>
@@ -16,13 +16,21 @@
         <option *ngFor="let a of tertiary_action_list" [value]="a.id">{{a.name}}</option>
       </select>
     </ng-container>
+    <br />
+    <br />
+    <textarea [(ngModel)]="new_action.comments" placeholder="Comments"></textarea>
   </div>
-  <br />
-  
-<textarea [(ngModel)]="new_action.comments" placeholder="Comments"></textarea>
-  <br />
-  <label>Schedule: &nbsp;<input type="checkbox" [(ngModel)]="scheduled" /></label>
-  <input *ngIf="scheduled" type="datetime-local" [(ngModel)]="new_action.scheduled_date" /><br />
-  <button (click)="addAction()">Submit</button>
-
+  <div class="right-box">
+    <span>Schedule: &nbsp;<input type="checkbox" style="width: 20px; height: 20px;" [(ngModel)]="scheduled" /></span>
+    <ng-container *ngIf="scheduled">
+      <br />
+      <input style="width: 55px; height: 30px;" type="datetime-local" [(ngModel)]="new_action.scheduled_date" />
+      <br />
+    </ng-container>
+    <ng-container *ngIf="!scheduled">
+      <br />
+      <br />
+    </ng-container>
+    <button (click)="addAction()">Submit</button>
+  </div>
 </div>
