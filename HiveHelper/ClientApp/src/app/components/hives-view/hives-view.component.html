@@ -1,11 +1,18 @@
-Hives in Yard<br />
-<input type="checkbox" [(ngModel)]="displayGreen">Green<br>
-<input type="checkbox" [(ngModel)]="displayBlue">Blue<br>
-<input type="checkbox" [(ngModel)]="displayRed">Red<br>
-<input type="checkbox" [(ngModel)]="displayYellow">Yellow<br />
-<div *ngFor="let h of filterHives()">
-  <app-card-link [link]="'Hive'" [data]="h.id" [title]="h.name" [color]="getColor(h)"></app-card-link>
+<div>
+  <div class="page-header">
+    <h1>Hives in Yard</h1>
+  </div>
+  <div>
+    <label><input type="checkbox" [(ngModel)]="displayRed">&nbsp; - Immediate Attention</label>
+    <label><input type="checkbox" [(ngModel)]="displayYellow">&nbsp; - Overdue For Inspection</label>
+    <label><input type="checkbox" [(ngModel)]="displayBlue">&nbsp; - No Issues</label>
+    <label><input type="checkbox" [(ngModel)]="displayGreen">&nbsp; - All Hives Inspected</label>
+  </div>
+  <div>
+    <app-card-link *ngFor="let h of filterHives()" [link]="'Hive'" [data]="h.id" [title]="h.name" [color]="getColor(h)"></app-card-link>
+  </div>
+  <br />
+  <app-add-hive *ngIf="user_data.loggedIn.permissions?.includes('leader')" [location_id]="location_id" (added)="onAdd($event)"></app-add-hive>
 </div>
-<br />
-<app-add-hive *ngIf="user_data.loggedIn.permissions?.includes('leader')" [location_id]="location_id" (added)="onAdd($event)"></app-add-hive>
+
 
