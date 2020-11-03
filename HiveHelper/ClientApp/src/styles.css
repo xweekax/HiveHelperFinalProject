@@ -15,7 +15,7 @@ code {
   border-color: #1861ac;
 }
 
-.container{
+.container {
     display: flex;
     align-content: center;
     align-items: center;
@@ -27,44 +27,91 @@ code {
 }
 
 nav {
-  background-image: url('assets/Images/HoneyCombs.jpeg');
-  background-position:center;
-  background-size: cover;
+  /*background-image: url('assets/Images/HoneyCombs.jpeg');
+  background-position: center;
+  background-size: cover;*/
+  background-color: rgb(232, 210, 20);
+  
 }
 
 .navbar-brand:hover {
   background-color: black;
-  color:yellow;
+  color: rgb(232, 210, 20);
+  border: groove;
+  border-color: rgb(232, 210, 20);
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
-.navbar-brand{
-    color:black;    
+.navbar-brand {
+  color: black;
+  font-weight: 700;
 }
 
 .nav-item:hover {
-  background-color: black;  
+  /* background-color: black;
+  color: yellow;
+  border: groove;
+  border-color: yellow;
+  padding-top: 10px;
+  padding-bottom: 10px;*/
 }
 
 .nav-link {
   color: black;
+  font-weight: 700;
 }
 
-.nav-link:active {
-  color: yellow;
-}
+  .nav-link:active {
+    color: rgb(232, 210, 20);
+  }
 
-.nav-link:hover {
-  color: yellow;
-}
+  .nav-link:hover {
+    background-color: black;
+    color: rgb(232, 210, 20);
+    border: groove;
+    border-color: rgb(232, 210, 20);
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
 
 body {
   background-image: url("..\src\assets\flowerstream.png" );
   background-repeat: no-repeat;
-  background-size: cover;  
+  background-size:cover;  
 }
 
-background-image {
-  opacity: 0.5;
+.slide-in-left {
+  animation: slide-in-left 6.5s infinite cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.bottom-bee{
+    top: 80vh;
+    left: 0%;
+}
+
+/**
+ * ----------------------------------------
+ * animation slide-in-left
+ * ----------------------------------------
+ */
+@keyframes slide-in-left {
+  0% {
+    /*transform: translateX(-1000px);*/
+    transform: translateX(-10vw);
+    opacity: 0;
+  }
+
+  50%{
+      transform: translateX(50vw);
+      opacity: 1;
+  }
+
+  100% {
+   /* transform: translateX(1300px);*/
+   transform: translateX(110vw);
+    opacity: 0;
+  }
 }
 
 .page-header {
