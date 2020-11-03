@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   enterPassword: string;
   displayError: boolean;
   redirectMessage: string;
-  imgPath = '../../../assets/bee1.png';
+  imgPath1 = '../../../assets/bee1.png';
+  imgPath2 = '../../../assets/bee2.png';
 
   constructor(private user: UserDataService, private router: Router, private route: ActivatedRoute) {
     //used for initial login
