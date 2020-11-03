@@ -58,7 +58,7 @@ nav {
 }
 
 body {
-  background-image: url("..\ClientApp\src\assets\flowerstream.png" );
+  background-image: url("..\src\assets\flowerstream.png" );
   background-repeat: no-repeat;
   background-size: cover;  
 }
