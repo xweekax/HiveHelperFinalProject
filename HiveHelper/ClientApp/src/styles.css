@@ -22,15 +22,12 @@ code {
     text-align: center;
 }
 
-.container div {
-    width: 100%;
+body {
+  background-image: url("C:\devbuild4\Final Hive Helper\HiveHelperFinalProject\HiveHelper\ClientApp\src\assets\flowerstream.png" );
+  background-repeat: no-repeat;
+  background-size: cover;  
 }
 
-.page-header {
-    width: 100%;
-}
-
-.left-button {
-    position: relative;
-    float: left;
+background-image {
+  opacity: 0.5;
 }
