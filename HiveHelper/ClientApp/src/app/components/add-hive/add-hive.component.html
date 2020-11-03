@@ -1,10 +1,9 @@
 <h2>Add A Hive</h2>
+
+<input placeholder="Name" (keyup.enter)="addHive()" [(ngModel)]="new_hive.name" />
 <br />
-Name:
-<input (keyup.enter)="addHive()" [(ngModel)]="new_hive.name" />
 <br />
-Inspection Interval:
-<input (keyup.enter)="addHive()" [(ngModel)]="new_hive.inspection_interval" />
+<input placeholder="Inspection Interval" (keyup.enter)="addHive()" [(ngModel)]="new_hive.inspection_interval" />
 <br />
 <br />
 <button (click)="addHive()">Add Hive</button>
