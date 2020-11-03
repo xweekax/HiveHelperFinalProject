@@ -21,3 +21,16 @@ code {
     align-items: center;
     text-align: center;
 }
+
+.container div {
+    margin: 0 auto;
+}
+
+.page-header {
+    width: 100%;
+}
+
+.left-button {
+    position: relative;
+    float: left;
+}

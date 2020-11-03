@@ -1,15 +1,22 @@
-Hive Details<br />
-<button (click)="goBack()">Back</button><br />
-<app-add-action-detail [hive_id]="hive_id" (added)="onAdd($event)"></app-add-action-detail>
-<h2>Incomplete:</h2>
 <div>
-  <app-action-detail-item *ngFor="let d of incompleteActions()" [action]="d" (completed)="completeTask($event)"></app-action-detail-item>
+  <div class="page-header">
+    <button class="left-button" (click)="goBack()">Back</button>
+    <h1>
+      Hive Details
+    </h1>
+  </div>
+  <app-add-action-detail [hive_id]="hive_id" (added)="onAdd($event)"></app-add-action-detail>
+  <h2>Incomplete:</h2>
+  <div>
+    <app-action-detail-item *ngFor="let d of incompleteActions()" [action]="d" (completed)="completeTask($event)"></app-action-detail-item>
+  </div>
+  <p>{{message}}</p>
+  <h2>Complete:</h2>
+  <div>
+    <app-action-detail-item *ngFor="let d of completedActions()" [action]="d"></app-action-detail-item>
+  </div>
 </div>
-<p>{{message}}</p>
-<h2>Complete:</h2>
-<div>
-  <app-action-detail-item *ngFor="let d of completedActions()" [action]="d"></app-action-detail-item>
-</div>
+
 
 
 
