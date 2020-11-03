@@ -21,3 +21,36 @@ code {
     align-items: center;
     text-align: center;
 }
+
+nav {
+  background-image: url('assets/Images/HoneyCombs.jpeg');
+  background-position:center;
+  background-size: cover;
+}
+
+.navbar-brand:hover {
+  background-color: black;
+  color:yellow;
+}
+
+.navbar-brand{
+    color:black;
+    
+}
+
+.nav-item:hover {
+  background-color: black;
+  
+}
+
+.nav-link {
+  color: black;
+}
+
+.nav-link:active {
+  color: yellow;
+}
+
+.nav-link:hover {
+  color: yellow;
+}
