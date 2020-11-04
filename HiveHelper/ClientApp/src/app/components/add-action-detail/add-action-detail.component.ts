@@ -66,6 +66,15 @@ export class AddActionDetailComponent implements OnInit {
     this.setAction();
   }
 
+  filterActive(list: PrimaryAction[] | SecondaryAction[] | TertiaryAction[]) {
+    if (!list) {
+      return [];
+    }
+    else {
+      return list.filter(x => x.active);
+    }
+  }
+
   getPrimaryActions() {
     this.primary_action_list = [];
     this.secondary_action_list = [];
