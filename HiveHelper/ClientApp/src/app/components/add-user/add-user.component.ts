@@ -37,6 +37,7 @@ export class AddUserComponent implements OnInit {
   }
 
   addUser() {
+    
     let checkedUser = true;
 
     if (this.new_user.first_name == '') {
@@ -62,13 +63,13 @@ export class AddUserComponent implements OnInit {
     }
 
 
-
     if (this.new_user.username == '') {
       checkedUser = false;
       this.username_error = true;
     }
     else {
-      this.user_data.isUsernameAvailable(this.new_user.username).subscribe(response => {
+      
+      this.user_data.isUsernameAvailable(this.new_user.username).subscribe(response => {        
         if (response.result && checkedUser) {
           this.added.emit(this.new_user);
           this.setUser();

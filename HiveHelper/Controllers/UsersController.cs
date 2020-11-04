@@ -88,10 +88,10 @@ namespace HiveHelper.Controllers
             return new { result, status, user = found, permissions };
         }
 
-        [HttpGet("/available/{username}")]
+        [HttpGet("check/available/{username}")]
         public Object AvailableUsername(string username)
         {
-            bool result = data.GetUser(username) is null;
+            bool result = (data.GetUser(username) is null);
             return new { result };
         }
 

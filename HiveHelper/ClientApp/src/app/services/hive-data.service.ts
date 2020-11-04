@@ -23,8 +23,7 @@ export class HiveDataService {
   }
 
   addHive(new_hive: Hive): Observable<ApiResult> {
-    new_hive.inspection_interval = +new_hive.inspection_interval;
-    console.log(new_hive);
+    new_hive.inspection_interval = +new_hive.inspection_interval;   
     return this.http.post<ApiResult>(this.baseUrl + this.hiveUrl, new_hive);
   }
 

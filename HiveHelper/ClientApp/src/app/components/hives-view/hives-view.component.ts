@@ -43,15 +43,7 @@ export class HivesViewComponent implements OnInit {
   }
 
   getColor(hive: Hive): string {
-    console.log('color checking');
-    console.log('green hives');
-    console.log(this.green_hives);
-    console.log('yellow hives');
-    console.log(this.yellow_hives);
-    console.log('red hives');
-    console.log(this.red_hives);
-    console.log('green hides includes our hives')
-    console.log(this.red_hives.includes(hive));
+
     if (this.red_hives.includes(hive)) {
       return 'red';
     }
