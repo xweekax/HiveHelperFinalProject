@@ -22,7 +22,12 @@ export class AddActionDetailComponent implements OnInit {
 
   new_action: ActionDetail;
   scheduled: boolean;
+  scheduledError: boolean;
   message: string;
+  primaryError: boolean;
+  secondaryError: boolean;
+  tertiaryError: boolean;
+
 
   constructor(private action_data: ActionDataService, private user_data: UserDataService) {
     this.primary_action_list = [];
@@ -31,6 +36,7 @@ export class AddActionDetailComponent implements OnInit {
   }
 
   setAction() {
+    this.scheduled = false;
     this.new_action = {
       id: 0,
       primary_action_id: 0,
@@ -86,17 +92,46 @@ export class AddActionDetailComponent implements OnInit {
   }
 
   addAction() {
-    if (this.scheduled && this.new_action.scheduled_date < this.new_action.entry_date) {
-      this.message = "Incorrect Scheduled Date";
-      return
+    let checkedAction = true;
+
+    if (this.scheduled && this.new_action.scheduled_date <= this.new_action.entry_date) {
+      this.scheduledError = true;
+      checkedAction = false; 
     }
     else if (this.scheduled) {
       this.new_action.completed = false;
       this.new_action.completed_date = this.new_action.scheduled_date;
-      //this.new_action.completed_date = null;
+      this.scheduledError = false;
+      
     }
-    this.added.emit(this.new_action);
-    this.setAction();
+
+    if (this.new_action.primary_action_id == 0) {
+      checkedAction = false;
+      this.primaryError = true;
+    }
+    else {
+      this.primaryError = false;
+    }
+    if (this.new_action.secondary_action_id == 0) {
+      checkedAction = false;
+      this.secondaryError = true;
+    }
+    else {
+      this.secondaryError = false;
+    }
+    if (this.new_action.tertiary_action_id == 0) {
+      checkedAction = false;
+      this.tertiaryError = true;
+    }
+    else {
+      this.tertiaryError = true;
+    }
+    
+    if (checkedAction) {
+      this.added.emit(this.new_action);
+      this.setAction();
+    }
+    
   }
 
 }

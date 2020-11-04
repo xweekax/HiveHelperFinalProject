@@ -76,4 +76,12 @@ export class HiveDetailViewComponent implements OnInit {
     });
   }
 
+  delete() {
+    this.hive_data.deleteHive(this.hive_id).subscribe(response => {
+      if (response.result) {
+        this.goBack();
+      }
+    });
+  }
+
 }
