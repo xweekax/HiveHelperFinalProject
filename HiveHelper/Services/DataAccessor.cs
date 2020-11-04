@@ -58,6 +58,7 @@ namespace HiveHelper.Services
 
         public bool AddUser(User new_user)
         {
+            new_user.username = new_user.username.ToLower();
             int result = db.Execute("AddUser", new { @firstname = new_user.first_name, @lastname = new_user.last_name, @accesslevel = new_user.access_level, @username = new_user.username }, commandType: CommandType.StoredProcedure );
             return result != 0;
         }
@@ -127,7 +128,7 @@ namespace HiveHelper.Services
         public User GetUser(string username)
         {
             string query = "SELECT * FROM [User] WHERE username = @username";
-
+            username = username.ToLower();
             User found;
 
             try
