@@ -1,16 +1,23 @@
-<h2>Add A User</h2>
 
-<input placeholder="First Name" [(ngModel)]="new_user.first_name" [ngClass]="{'entry-error': first_name_error}" />
-<br />
-<br />
-<input placeholder="Last Name" [(ngModel)]="new_user.last_name" [ngClass]="{'entry-error': last_name_error}" />
-<br />
-<br />
-<input placeholder="Access Level" [(ngModel)]="new_user.access_level" [ngClass]="{'entry-error': access_level_error}" />
-<br />
-<br />
-<input placeholder="Username" [(ngModel)]="new_user.username" [ngClass]="{'entry-error': username_error}" />
-<br />
-<br />
-
-<button (click)="addUser()">Add User</button>
+  <div class="action-container">
+    <h2>Add A User</h2>
+    <br/>
+    <input placeholder="First Name" [(ngModel)]="new_user.first_name" [ngClass]="{'entry-error': first_name_error}" />
+    <br />
+    <br />
+    <input placeholder="Last Name" [(ngModel)]="new_user.last_name" [ngClass]="{'entry-error': last_name_error}" />
+    <br />
+    <br />
+    <input placeholder="Username" [(ngModel)]="new_user.username" [ngClass]="{'entry-error': username_error}" />
+    <br />
+    <br />
+    <select placeholder="Access Level" [(ngModel)]="new_user.access_level" [ngClass]="{'entry-error': access_level_error}">
+      <option value="0" selected disabled>Select Access Level   </option>
+      <option value="1">Beekeeper</option>
+      <option value="2">Leader</option>
+      <option value="3">Admin</option>
+    </select>
+    <br />
+    <br />
+    <button (click)="addUser()">Add User</button>
+  </div>

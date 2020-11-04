@@ -3,12 +3,14 @@
     <h1>Hives in Yard</h1>
   </div>
   <div>
-    <label><input type="checkbox" [(ngModel)]="displayRed">&nbsp; - Immediate Attention</label>
-    <label><input type="checkbox" [(ngModel)]="displayYellow">&nbsp; - Overdue For Inspection</label>
-    <label><input type="checkbox" [(ngModel)]="displayBlue">&nbsp; - No Issues</label>
-    <label><input type="checkbox" [(ngModel)]="displayGreen">&nbsp; - All Hives Inspected</label>
+    <b>
+      <label><input type="checkbox" [(ngModel)]="displayRed">&nbsp; - Immediate Attention &nbsp;</label>
+      <label><input type="checkbox" [(ngModel)]="displayYellow">&nbsp; - Overdue For Inspection &nbsp;</label>
+      <label><input type="checkbox" [(ngModel)]="displayBlue">&nbsp; - No Issues &nbsp;</label>
+      <label><input type="checkbox" [(ngModel)]="displayGreen">&nbsp; - All Hives Inspected &nbsp;</label>
+    </b>
   </div>
-  <div>
+  <div class="action-container">
     <app-card-link *ngFor="let h of filterHives()" [link]="'Hive'" [data]="h.id" [title]="h.name" [color]="getColor(h)"></app-card-link>
   </div>
   <br />

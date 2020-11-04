@@ -1,9 +1,11 @@
-<h2>Add A Hive</h2>
+<div class="action-container">
+  <h2>Add A Hive</h2>
 
-<input placeholder="Name" (keyup.enter)="addHive()" [(ngModel)]="new_hive.name" />
-<br />
-<br />
-<input placeholder="Inspection Interval" (keyup.enter)="addHive()" [(ngModel)]="new_hive.inspection_interval" />
-<br />
-<br />
-<button (click)="addHive()">Add Hive</button>
+  <input placeholder="Name" (keyup.enter)="addHive()" [(ngModel)]="new_hive.name" />
+  <br />
+  <br />
+  <input placeholder="Inspection Interval" (keyup.enter)="addHive()" [(ngModel)]="new_hive.inspection_interval" />
+  <br />
+  <br />
+  <button (click)="addHive()">Add Hive</button>
+</div>

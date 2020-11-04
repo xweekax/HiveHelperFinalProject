@@ -1,3 +1,14 @@
 .entry-error{
     border-color: red;
 }
+
+.action-container {
+  background-image: url("../../../assets/honeycomb1.png");
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  border-style: solid;
+  border-width: thin;
+  padding: 20px 20px 20px 20px;
+}
+

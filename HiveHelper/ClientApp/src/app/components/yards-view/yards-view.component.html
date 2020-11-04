@@ -1,10 +1,12 @@
 <div>
   <div class="page-header"><h1>All Yards</h1> <input [(ngModel)]="search" placeholder="Search..." /></div>
   <div>
-    <label><input type="checkbox" [(ngModel)]="displayRed">&nbsp; - Immediate Attention</label>
-    <label><input type="checkbox" [(ngModel)]="displayYellow">&nbsp; - Overdue For Inspection</label>
-    <label><input type="checkbox" [(ngModel)]="displayBlue">&nbsp; - No Issues</label>
-    <label><input type="checkbox" [(ngModel)]="displayGreen">&nbsp; - All Hives Inspected</label>
+    <b>
+      <label><input type="checkbox" [(ngModel)]="displayRed">&nbsp; - Immediate Attention</label>
+      <label><input type="checkbox" [(ngModel)]="displayYellow">&nbsp; - Overdue For Inspection</label>
+      <label><input type="checkbox" [(ngModel)]="displayBlue">&nbsp; - No Issues</label>
+      <label><input type="checkbox" [(ngModel)]="displayGreen">&nbsp; - All Hives Inspected</label>
+    </b>
   </div>
   <div class="action-container">
     <app-card-link *ngFor="let y of filterYards()" [link]="'Yard'" [data]="y.id" [title]="y.name" [color]="getColor(y)"></app-card-link>
