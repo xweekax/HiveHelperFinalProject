@@ -3,10 +3,12 @@ select{
 }
 
 .container-box {
-  background-color: rgb(232, 210, 20);
+  background-image: url("../../../assets/honeycomb1.png");
+  background-size: contain;
+  background-position: center;
   width: 600px;
   display: flex;
-  padding: 10px 10px 10px 10px;
+  padding: 20px 20px 20px 20px;
   height: auto;
   margin: 0 auto;
   border-radius: 10px;
