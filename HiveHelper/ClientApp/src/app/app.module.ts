@@ -17,6 +17,7 @@ import { AddYardComponent } from './components/add-yard/add-yard.component';
 import { AddHiveComponent } from './components/add-hive/add-hive.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { AdminViewComponent } from './components/admin-view/admin-view.component';
+import { AddOptionsComponent } from './components/add-options/add-options.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AdminViewComponent } from './components/admin-view/admin-view.component
     AddYardComponent,
     AddHiveComponent,
     AddUserComponent,
-    AdminViewComponent
+    AdminViewComponent,
+    AddOptionsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

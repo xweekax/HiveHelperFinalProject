@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { UserDataService } from '../../services/user-data.service';
 import { Router } from '@angular/router';
+import { PrimaryAction } from '../../models/primary-action';
+import { SecondaryAction } from '../../models/secondary-action';
+import { TertiaryAction } from '../../models/tertiary-action';
+import { ActionDataService } from '../../services/action-data.service';
 
 @Component({
   selector: 'app-admin-view',
@@ -26,5 +30,4 @@ export class AdminViewComponent implements OnInit {
     }
 
   }
-
 }
