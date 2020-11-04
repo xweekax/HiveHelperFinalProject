@@ -16,10 +16,11 @@ code {
 }
 
 button {
-  background-image: url('assets/Images/yellow-black-honeycomb-hexagon-beehive-240x432-c2-000000-ffd700-l2-5-79-a-25-f-5.jpg');
+  background-image: url('assets/Images/HCButtonWhite.png');
   background-size:cover;
   background-repeat:no-repeat;
-  color: rgb(232,210,20);
+  color: black;
+  font-weight: bold;
 }
 
 .container {
