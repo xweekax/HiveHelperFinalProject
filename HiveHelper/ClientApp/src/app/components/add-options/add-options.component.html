@@ -1,27 +1,30 @@
 <div>
   <h1>Add BeeKeeper Options</h1>
   <div>
-    <input type="text" #primaryName placeholder="New Main-Action Name" />
+    <input type="text" #primaryName placeholder="New Main-Action Name" (keyup.enter)="addPrimary(primaryName.value); primaryName.value = ''" />
     <button (click)="addPrimary(primaryName.value); primaryName.value = ''">Add</button><br />
-    <select (change)="getSecondaryActions($event.target.value)">
+    <select (change)="getSecondaryActions($event.target.value)" [(ngModel)]="selected_primary_id">
       <option value="0" disabled selected>Select Action</option>
       <option *ngFor="let a of primary_action_list" [value]="a.id">{{a.name}}</option>
-    </select><br />
+    </select><button *ngIf="selected_primary_id" (click)="updatePrimary()">Change to {{selected_primary.active ? 'inactive' : 'active'}}</button>
+    <br />
     <ng-container *ngIf="new_secondary.primary_action_id > 0">
-      <input type="text" #secondaryName placeholder="New Sub-Action Name" />
+      <input type="text" #secondaryName placeholder="New Sub-Action Name" (keyup.enter)="addSecondary(secondaryName.value); secondaryName.value = ''" />
       <button (click)="addSecondary(secondaryName.value); secondaryName.value = ''">Add</button><br />
-      <select (change)="getTertiaryActions($event.target.value)">
+      <select (change)="getTertiaryActions($event.target.value)" [(ngModel)]="selected_secondary_id">
         <option value="0" disabled selected>Select Action</option>
         <option *ngFor="let a of secondary_action_list" [value]="a.id">{{a.name}}</option>
-      </select><br />
+      </select><button *ngIf="selected_secondary_id" (click)="updateSecondary()">Change to {{selected_secondary.active ? 'inactive' : 'active'}}</button>
+      <br />
     </ng-container>
     <ng-container *ngIf="new_tertiary.secondary_action_id > 0">
-      <input type="text" #tertiaryName placeholder="New Sub-Action Name" />
+      <input type="text" #tertiaryName placeholder="New Sub-Action Name" (keyup.enter)="addTertiary(tertiaryName.value); tertiaryName.value=''" />
       <button (click)="addTertiary(tertiaryName.value); tertiaryName.value=''">Add</button><br />
-      <select>
+      <select [(ngModel)]="selected_tertiary_id" (change)="selectTertiary($event.target.value)">
         <option value="0" disabled selected>Select Action</option>
         <option *ngFor="let a of tertiary_action_list" [value]="a.id">{{a.name}}</option>
-      </select><br />
+      </select><button *ngIf="selected_tertiary_id" (click)="updateTertiary()">Change to {{selected_tertiary.active ? 'inactive' : 'active'}}</button>
+      <br />
     </ng-container>
   </div>
 </div>

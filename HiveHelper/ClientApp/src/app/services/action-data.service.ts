@@ -54,4 +54,16 @@ export class ActionDataService {
   addTertiaryAction(action: TertiaryAction): Observable<ApiResult> {
     return this.http.post<ApiResult>(this.baseUrl + this.DetailsUrl + 'tertiary', action);
   }
+
+  updatePrimary(action: PrimaryAction): Observable<ApiResult> {
+    return this.http.put<ApiResult>(this.baseUrl + this.DetailsUrl + 'primary', action);
+  }
+
+  updateSecondary(action: SecondaryAction): Observable<ApiResult> {
+    return this.http.put<ApiResult>(this.baseUrl + this.DetailsUrl + 'secondary', action);
+  }
+
+  updateTertiary(action: TertiaryAction): Observable<ApiResult> {
+    return this.http.put<ApiResult>(this.baseUrl + this.DetailsUrl + 'tertiary', action);
+  }
 }
