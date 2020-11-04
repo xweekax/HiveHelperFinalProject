@@ -1,0 +1,27 @@
+<div>
+  <h1>Add BeeKeeper Options</h1>
+  <div>
+    <input type="text" #primaryName placeholder="New Main-Action Name" />
+    <button (click)="addPrimary(primaryName.value); primaryName.value = ''">Add</button><br />
+    <select (change)="getSecondaryActions($event.target.value)">
+      <option value="0" disabled selected>Select Action</option>
+      <option *ngFor="let a of primary_action_list" [value]="a.id">{{a.name}}</option>
+    </select><br />
+    <ng-container *ngIf="new_secondary.primary_action_id > 0">
+      <input type="text" #secondaryName placeholder="New Sub-Action Name" />
+      <button (click)="addSecondary(secondaryName.value); secondaryName.value = ''">Add</button><br />
+      <select (change)="getTertiaryActions($event.target.value)">
+        <option value="0" disabled selected>Select Action</option>
+        <option *ngFor="let a of secondary_action_list" [value]="a.id">{{a.name}}</option>
+      </select><br />
+    </ng-container>
+    <ng-container *ngIf="new_tertiary.secondary_action_id > 0">
+      <input type="text" #tertiaryName placeholder="New Sub-Action Name" />
+      <button (click)="addTertiary(tertiaryName.value); tertiaryName.value=''">Add</button><br />
+      <select>
+        <option value="0" disabled selected>Select Action</option>
+        <option *ngFor="let a of tertiary_action_list" [value]="a.id">{{a.name}}</option>
+      </select><br />
+    </ng-container>
+  </div>
+</div>

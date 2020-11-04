@@ -98,14 +98,16 @@ export class AddActionDetailComponent implements OnInit {
 
     if (this.scheduled && this.new_action.scheduled_date <= this.new_action.entry_date) {
       this.scheduledError = true;
-      checkedAction = false; 
+      checkedAction = false;
     }
     else if (this.scheduled) {
-      
+
       this.new_action.completed = false;
       this.new_action.completed_date = this.new_action.scheduled_date;
       this.scheduledError = false;
-      
+    }
+    else {
+      this.new_action.scheduled_date = this.new_action.entry_date;
     }
 
     if (this.new_action.primary_action_id == 0) {

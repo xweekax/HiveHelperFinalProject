@@ -21,6 +21,7 @@ export class HivesViewComponent implements OnInit {
   displayBlue: boolean;
   displayRed: boolean;
   displayYellow: boolean;
+  yard_name: string;
 
   location_id: number;
   constructor(private data: HiveDataService, private user_data: UserDataService, private route: ActivatedRoute, private router: Router) {
@@ -35,6 +36,9 @@ export class HivesViewComponent implements OnInit {
       this.router.navigate(['LoginRequired']);
     }
     this.location_id = +this.route.snapshot.paramMap.get("location_id");
+    this.data.getYards().subscribe(response => {
+      this.yard_name = response.filter(x => x.id == this.location_id)[0].name;
+    });
     this.refreshHives();
   }
 
