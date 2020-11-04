@@ -27,6 +27,7 @@ export class AddActionDetailComponent implements OnInit {
   primaryError: boolean;
   secondaryError: boolean;
   tertiaryError: boolean;
+  scheduled_date: string;
 
 
   constructor(private action_data: ActionDataService, private user_data: UserDataService) {
@@ -92,6 +93,7 @@ export class AddActionDetailComponent implements OnInit {
   }
 
   addAction() {
+    this.new_action.scheduled_date = new Date(this.scheduled_date);
     let checkedAction = true;
 
     if (this.scheduled && this.new_action.scheduled_date <= this.new_action.entry_date) {
@@ -99,6 +101,7 @@ export class AddActionDetailComponent implements OnInit {
       checkedAction = false; 
     }
     else if (this.scheduled) {
+      
       this.new_action.completed = false;
       this.new_action.completed_date = this.new_action.scheduled_date;
       this.scheduledError = false;
@@ -124,7 +127,7 @@ export class AddActionDetailComponent implements OnInit {
       this.tertiaryError = true;
     }
     else {
-      this.tertiaryError = true;
+      this.tertiaryError = false;
     }
     
     if (checkedAction) {

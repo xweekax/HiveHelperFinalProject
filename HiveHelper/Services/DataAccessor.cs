@@ -76,7 +76,16 @@ namespace HiveHelper.Services
 
         public IEnumerable<ActionDetail> GetActionDetails(long hive_id)
         {
-            return db.Query<ActionDetail>("GetActionDetails", new { hive_id }, commandType: CommandType.StoredProcedure);            
+            List<ActionDetail> actions = db.Query<ActionDetail>("GetActionDetails", new { hive_id }, commandType: CommandType.StoredProcedure).ToList();
+
+            foreach(ActionDetail a in actions)
+            {
+                a.scheduled_date = a.scheduled_date.ToLocalTime();
+                a.entry_date = a.entry_date.ToLocalTime();
+                a.completed_date = a.completed_date.ToLocalTime();
+            }
+
+            return actions;
         }
 
         public Hive GetHive(long id)

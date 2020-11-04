@@ -24,7 +24,7 @@
     <span>Schedule: &nbsp;<input type="checkbox" style="width: 20px; height: 20px;" [(ngModel)]="scheduled" /></span>
     <ng-container *ngIf="scheduled">
       <br />
-      <input style="width: 55px; height: 30px;" type="datetime-local" [(ngModel)]="new_action.scheduled_date" [ngClass]="{'date-error': scheduledError}" />
+      <input style="width: 55px; height: 30px;" type="datetime-local" [(ngModel)]="scheduled_date" [ngClass]="{'date-error': scheduledError}" />
       <br />
     </ng-container>
     <ng-container *ngIf="!scheduled">

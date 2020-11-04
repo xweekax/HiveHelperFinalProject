@@ -34,7 +34,7 @@ export class UserDataService {
   }
 
   isUsernameAvailable(username: string): Observable<ApiResult> {
-    return this.http.get<ApiResult>(this.baseUrl + this.userUrl + `/available/${username}`);
+    return this.http.get<ApiResult>(this.baseUrl + this.userUrl + `/check/available/${username}`);
   }
 
   //update-password

@@ -67,10 +67,7 @@ export class LoginComponent implements OnInit {
   //send the updated password to the database.
   //must be 8 characters to 16, have 1 upper case, 1 lower case, and 1 number
   updatePassword() {
-    //check password requirements
-    console.log(this.enterPassword);
-    console.log(this.confirmPassword);
-    console.log(this.enterPassword.match(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,16}$/))
+    //check password requirements   
     if (this.enterPassword == this.confirmPassword && this.enterPassword.match(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,16}$/)) {
       this.user.updatePassword('', this.enterPassword).subscribe(result => {
         this.user.loggedIn.user.password = ''; //reset the password to nothing, not stored here.
