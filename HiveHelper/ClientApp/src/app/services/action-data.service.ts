@@ -42,4 +42,16 @@ export class ActionDataService {
     action.tertiary_action_id = +action.tertiary_action_id;
     return this.http.post<ApiResult>(this.baseUrl + this.DetailsUrl + 'details', action);
   }
+
+  addPrimaryAction(action: PrimaryAction): Observable<ApiResult> {
+    return this.http.post<ApiResult>(this.baseUrl + this.DetailsUrl + 'primary', action);
+  }
+
+  addSecondaryAction(action: SecondaryAction): Observable<ApiResult> {
+    return this.http.post<ApiResult>(this.baseUrl + this.DetailsUrl + 'secondary', action);
+  }
+
+  addTertiaryAction(action: TertiaryAction): Observable<ApiResult> {
+    return this.http.post<ApiResult>(this.baseUrl + this.DetailsUrl + 'tertiary', action);
+  }
 }

@@ -16,6 +16,8 @@ export class YardsViewComponent implements OnInit {
   redYards: Location[];
   allYards: Location[];
   search: string;
+  imgPath1 = '../../../assets/bee1.png';
+  imgPath2 = '../../../assets/bee2.png';
 
   displayGreen: boolean;
   displayBlue: boolean;
