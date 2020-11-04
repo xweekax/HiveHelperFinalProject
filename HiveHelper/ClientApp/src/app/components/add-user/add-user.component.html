@@ -1,15 +1,15 @@
 <h2>Add A User</h2>
 
-<input placeholder="First Name" [(ngModel)]="new_user.first_name" />
+<input placeholder="First Name" [(ngModel)]="new_user.first_name" [ngClass]="{'entry-error': first_name_error}" />
 <br />
 <br />
-<input placeholder="Last Name" [(ngModel)]="new_user.last_name" />
+<input placeholder="Last Name" [(ngModel)]="new_user.last_name" [ngClass]="{'entry-error': last_name_error}" />
 <br />
 <br />
-<input placeholder="Access Level" [(ngModel)]="new_user.access_level" />
+<input placeholder="Access Level" [(ngModel)]="new_user.access_level" [ngClass]="{'entry-error': access_level_error}" />
 <br />
 <br />
-<input placeholder="Username" [(ngModel)]="new_user.username" />
+<input placeholder="Username" [(ngModel)]="new_user.username" [ngClass]="{'entry-error': username_error}" />
 <br />
 <br />
 

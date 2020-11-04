@@ -1,17 +1,17 @@
 <div class="container-box">
   <div class="left-box">
-    <select [(ngModel)]="new_action.primary_action_id" (change)="getSecondaryActions()">
+    <select [(ngModel)]="new_action.primary_action_id" (change)="getSecondaryActions()" [ngClass]="{'action-error': primaryError}">
       <option value="0" disabled selected>Select Action</option>
       <option *ngFor="let a of primary_action_list" [value]="a.id">{{a.name}}</option>
     </select>
     <ng-container *ngIf="secondary_action_list.length > 0">
-      <select [(ngModel)]="new_action.secondary_action_id" (change)="getTertiaryActions()">
+      <select [(ngModel)]="new_action.secondary_action_id" (change)="getTertiaryActions()" [ngClass]="{'action-error': secondaryError}">
         <option value="0" disabled selected>Select Action</option>
         <option *ngFor="let a of secondary_action_list" [value]="a.id">{{a.name}}</option>
       </select>
     </ng-container>
     <ng-container *ngIf="tertiary_action_list.length > 0">
-      <select [(ngModel)]="new_action.tertiary_action_id">
+      <select [(ngModel)]="new_action.tertiary_action_id" [ngClass]="{'action-error': tertiaryError}">
         <option value="0" disabled selected>Select Action</option>
         <option *ngFor="let a of tertiary_action_list" [value]="a.id">{{a.name}}</option>
       </select>
@@ -24,7 +24,7 @@
     <span>Schedule: &nbsp;<input type="checkbox" style="width: 20px; height: 20px;" [(ngModel)]="scheduled" /></span>
     <ng-container *ngIf="scheduled">
       <br />
-      <input style="width: 55px; height: 30px;" type="datetime-local" [(ngModel)]="new_action.scheduled_date" />
+      <input style="width: 55px; height: 30px;" type="datetime-local" [(ngModel)]="new_action.scheduled_date" [ngClass]="{'date-error': scheduledError}" />
       <br />
     </ng-container>
     <ng-container *ngIf="!scheduled">

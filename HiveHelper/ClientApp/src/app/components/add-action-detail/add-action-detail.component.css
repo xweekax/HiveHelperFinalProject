@@ -34,3 +34,11 @@ select{
 .left-box textarea {
     width: 100%;
 }
+
+.action-error {
+  border-color: red;
+}
+
+.date-error {
+  border-color: red;
+}

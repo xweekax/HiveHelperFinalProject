@@ -16,7 +16,7 @@
     <app-action-detail-item *ngFor="let d of completedActions()" [action]="d"></app-action-detail-item>
   </div>
   <br/>
-  <button class="hive-detail-view" (click)="delete()">Delete Hive</button>
+  <button *ngIf="user_data.loggedIn.permissions?.includes('leader')" class="hive-detail-view" (click)="delete()">Delete Hive</button>
   <br/><br/>
 </div>
 
