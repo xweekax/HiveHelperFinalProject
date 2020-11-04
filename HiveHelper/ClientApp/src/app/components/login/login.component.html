@@ -1,12 +1,12 @@
 <h3>{{redirectMessage}}</h3>
 <div *ngIf="!passwordRequired">
-  <input placeholder="Username" [(ngModel)]="username" />&nbsp;
-  <input placeholder="Password" type="password" (keyup.enter)="attemptLogin()" [(ngModel)]="password" />&nbsp;
+  <input placeholder="Username" [(ngModel)]="username" [ngClass]="{'password-error' : usernameError}" />&nbsp;
+  <input placeholder="Password" type="password" (keyup.enter)="attemptLogin()" [(ngModel)]="password" [ngClass]="{'password-error' : displayError}" />&nbsp;
   <button (click)="attemptLogin()">Login</button>
 </div>
 <div *ngIf="passwordRequired">
-  <label>Password<input type="password" [(ngModel)]="enterPassword" /></label>
-  <label>Confirm Password<input (keyup.enter)="updatePassword()" type="password" [(ngModel)]="confirmPassword" /></label>
+  <label>Password<input type="password" [(ngModel)]="enterPassword" [ngClass]="{'password-error' : criteriaError}"/></label>
+  <label>Confirm Password<input (keyup.enter)="updatePassword()" type="password" [(ngModel)]="confirmPassword" [ngClass]="{'password-error' : matchError}"/></label>
   <button (click)="updatePassword()">Submit</button>
 </div>
 
