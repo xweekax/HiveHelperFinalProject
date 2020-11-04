@@ -23,6 +23,10 @@ namespace HiveHelper.Controllers
         }
         private string ParsePassword(string password)
         {
+            if (password is null)
+            {
+                password = "";
+            }
             var hasher = SHA256.Create();
             byte[] hashed = hasher.ComputeHash(Encoding.UTF8.GetBytes(password));
 
@@ -32,16 +36,7 @@ namespace HiveHelper.Controllers
                 builder.Append(hashed[i].ToString("x2"));
             }
             return builder.ToString();
-        }
-
-        private string ExtraMethod(string toParse)
-        {
-            if(toParse is null)
-            {
-                toParse = "";
-            }
-            return ParsePassword(toParse);
-        }
+        }       
 
         private List<string> GetPermission(long access_level)
         {
@@ -77,7 +72,7 @@ namespace HiveHelper.Controllers
                 result = true;
                 permissions = GetPermission(found.access_level);
             }
-            else if (found.password == ExtraMethod(password))
+            else if (found.password == ParsePassword(password))
             {
                 status = "success";
                 found.password = null;
@@ -92,6 +87,14 @@ namespace HiveHelper.Controllers
             }
             return new { result, status, user = found, permissions };
         }
+
+        [HttpGet("/available/{username}")]
+        public Object AvailableUsername(string username)
+        {
+            bool result = data.GetUser(username) is null;
+            return new { result };
+        }
+
         [HttpPost]
         public Object AddUser(User user)
         {
@@ -111,7 +114,7 @@ namespace HiveHelper.Controllers
             if(response.status == "new" || response.status == "success")
             {
                 status = user.password;
-                user.password = ExtraMethod(user.password);
+                user.password = ParsePassword(user.password);
                 result = data.UpdateUser(user);
             }
             else

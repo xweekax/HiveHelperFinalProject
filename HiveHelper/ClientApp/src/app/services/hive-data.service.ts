@@ -28,6 +28,10 @@ export class HiveDataService {
     return this.http.post<ApiResult>(this.baseUrl + this.hiveUrl, new_hive);
   }
 
+  deleteHive(id: number): Observable<ApiResult> {
+    return this.http.delete<ApiResult>(this.baseUrl + this.hiveUrl + `${id}`);
+  }
+
   getHives(location_id: number): Observable<Hive[]> {
     return this.http.get<Hive[]>(this.baseUrl + this.hiveUrl + `in/${location_id}`);    
   }

@@ -33,6 +33,10 @@ export class UserDataService {
     return this.http.post(this.baseUrl + this.userUrl, user);
   }
 
+  isUsernameAvailable(username: string): Observable<ApiResult> {
+    return this.http.get<ApiResult>(this.baseUrl + this.userUrl + `/available/${username}`);
+  }
+
   //update-password
   updatePassword(oldPassword: string, newPassword: string): Observable<ApiResult> {
     this.loggedIn.user.password = newPassword;
