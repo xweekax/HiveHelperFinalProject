@@ -42,16 +42,16 @@ export class YardsViewComponent implements OnInit {
 
   getColor(yard: Location): string {
     if (this.redYards.includes(yard)) {
-      return 'red';
+      return 'rgba(255, 34, 27, 0.60)';
     }
     else if (this.greenYards.includes(yard)) {
-      return 'green';
+      return 'rgba(86, 255, 27, 0.60)';
     }
     else if (this.yellowYards.includes(yard)) {
-      return 'yellow';
+      return 'rgba(248, 255, 27, 0.60)';
     }
     else {
-      return 'blue';
+      return 'rgba(51, 138, 255, 0.85)';
     }
   }
 
