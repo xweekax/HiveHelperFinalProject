@@ -1,15 +1,16 @@
-<h3>{{redirectMessage}}</h3>
-<div *ngIf="!passwordRequired">
-  <input placeholder="Username" [(ngModel)]="username" [ngClass]="{'password-error' : usernameError}" />&nbsp;
-  <input placeholder="Password" type="password" (keyup.enter)="attemptLogin()" [(ngModel)]="password" [ngClass]="{'password-error' : displayError}" />&nbsp;
-  <button (click)="attemptLogin()">Login</button>
+<div class="inner-container">
+  <h3>{{redirectMessage}}</h3>
+  <div *ngIf="!passwordRequired">
+    <input placeholder="Username" [(ngModel)]="username" [ngClass]="{'password-error' : usernameError}" />&nbsp;
+    <input placeholder="Password" type="password" (keyup.enter)="attemptLogin()" [(ngModel)]="password" [ngClass]="{'password-error' : displayError}" />&nbsp;
+    <button (click)="attemptLogin()">Login</button>
+  </div>
+  <div *ngIf="passwordRequired">
+    <label>Password<input type="password" [(ngModel)]="enterPassword" [ngClass]="{'password-error' : criteriaError}"/></label>
+    <label>Confirm Password<input (keyup.enter)="updatePassword()" type="password" [(ngModel)]="confirmPassword" [ngClass]="{'password-error' : matchError}"/></label>
+    <button (click)="updatePassword()">Submit</button>
+  </div>
 </div>
-<div *ngIf="passwordRequired">
-  <label>Password<input type="password" [(ngModel)]="enterPassword" [ngClass]="{'password-error' : criteriaError}"/></label>
-  <label>Confirm Password<input (keyup.enter)="updatePassword()" type="password" [(ngModel)]="confirmPassword" [ngClass]="{'password-error' : matchError}"/></label>
-  <button (click)="updatePassword()">Submit</button>
-</div>
-
   <img class="slide-in-left bottom-bee" [src]="imgPath1"/>
   <img class="slide-in-right top-bee" [src]="imgPath2"/>
 
