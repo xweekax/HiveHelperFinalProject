@@ -7,6 +7,7 @@
   border-width: thin;
   border-radius: 15px;
   font-weight: bold;
+  padding: 20px 20px 20px 20px;
 }
 
   .box a:link {
@@ -15,4 +16,8 @@
 
   .box a:visited {
     text-decoration: none;
+  }
+
+  div{
+      z-index:2;
   }

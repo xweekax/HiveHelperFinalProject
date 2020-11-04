@@ -1,5 +1,5 @@
 <div>
-  <div class="page-header"><h1>All Yards</h1> <input [(ngModel)]="search" placeholder="Search..." /></div>
+  <div class="page-header"><h1>Bee Yards</h1> <input [(ngModel)]="search" placeholder="Search..." /></div>
   <div>
     <b>
       <label><input type="checkbox" [(ngModel)]="displayRed">&nbsp; - Immediate Attention</label>
@@ -12,5 +12,9 @@
     <app-card-link *ngFor="let y of filterYards()" [link]="'Yard'" [data]="y.id" [title]="y.name" [color]="getColor(y)"></app-card-link>
   </div>
   <app-add-yard *ngIf="user_data.loggedIn.permissions?.includes('admin')" (added)="onAdd($event)"></app-add-yard>
+</div>
+<div>
+  <img class="slide-in-left bottom-bee" [src]="imgPath1" />
+  <img class="slide-in-right top-bee" [src]="imgPath2" />
 </div>
 
