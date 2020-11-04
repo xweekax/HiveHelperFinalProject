@@ -23,15 +23,36 @@ button {
   font-weight: bold;
 }
 
+.inner-container {
+  position: relative;
+  z-index: 5;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+  min-height: 100vh;
+}
+
 .container {
-    display: flex;
-    align-content: center;
-    align-items: center;
-    text-align: center;
-    align-self: center;
-    justify-content: center;
-    width: 100%;
-    margin: 0 auto;
+    top: 80px;
+    position: absolute;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  min-width: 95%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.nav-container {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  align-self: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
 }
 
 nav {
@@ -39,7 +60,6 @@ nav {
   background-position: center;
   background-size: cover;*/
   background-color: rgb(232, 210, 20);
-  
 }
 
 .navbar-brand:hover {
