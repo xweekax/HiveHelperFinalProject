@@ -15,6 +15,9 @@ export class LoginComponent implements OnInit {
   passwordRequired: boolean;
   enterPassword: string;
   displayError: boolean;
+  criteriaError: boolean;
+  usernameError: boolean;
+  matchError: boolean;
   redirectMessage: string;
   imgPath1 = '../../../assets/bee1.png';
   imgPath2 = '../../../assets/bee2.png';
@@ -42,10 +45,17 @@ export class LoginComponent implements OnInit {
 
   //call user service to login, store the returned result in the service, and process it here.
   attemptLogin() {
-    this.user.login(this.username, this.password).subscribe(results => {
-      this.user.loggedIn = results;
-      this.loginResult(results);
-    });
+    if (this.username) {
+      this.user.login(this.username, this.password).subscribe(results => {
+        this.user.loggedIn = results;
+        this.loginResult(results);
+      });
+    }
+    else {
+      this.usernameError = true;
+      this.displayError = true;
+    }
+    
   }
 
   //switch to require password for new users, pass successes to the rest of the app, show errors for failed login.
@@ -73,6 +83,13 @@ export class LoginComponent implements OnInit {
         this.user.loggedIn.user.password = ''; //reset the password to nothing, not stored here.
         this.router.navigate(['Overview']);
       });
+    }
+    else if (!this.enterPassword.match(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,16}$/)) {
+      this.criteriaError = true;
+    }
+    else {
+      this.matchError = true;
+      this.criteriaError = false;
     }
   }
 }
