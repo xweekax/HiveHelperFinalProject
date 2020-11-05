@@ -8,6 +8,7 @@
   border-radius: 15px;
   font-weight: bold;
   padding: 20px 20px 20px 20px;
+  overflow:hidden;
 }
 
   .box a:link {
