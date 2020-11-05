@@ -1,6 +1,8 @@
 <div>
-  <h1>Add BeeKeeper Options</h1>
-  <div>
+  <br/>  
+  <div class="action-container">
+    <h2>Add BeeKeeper Options</h2>
+    <br/>
     <input type="text" #primaryName placeholder="New Main-Action Name" (keyup.enter)="addPrimary(primaryName.value); primaryName.value = ''" />
     <button (click)="addPrimary(primaryName.value); primaryName.value = ''">Add</button><br />
     <select (change)="getSecondaryActions($event.target.value)" [(ngModel)]="selected_primary_id">

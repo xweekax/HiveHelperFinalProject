@@ -22,6 +22,8 @@ export class HivesViewComponent implements OnInit {
   displayRed: boolean;
   displayYellow: boolean;
   yard_name: string;
+  imgPath1 = '../../../assets/bee1.png';
+  imgPath2 = '../../../assets/bee2.png';
 
   location_id: number;
   constructor(private data: HiveDataService, private user_data: UserDataService, private route: ActivatedRoute, private router: Router) {

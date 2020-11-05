@@ -18,6 +18,8 @@ export class HiveDetailViewComponent implements OnInit {
   hive_id: number;
   details: ActionDetail[];
   message: string;
+  imgPath1 = '../../../assets/bee1.png';
+  imgPath2 = '../../../assets/bee2.png';
   
   constructor(private hive_data: HiveDataService, private action_data:  ActionDataService, private route: ActivatedRoute, private user_data: UserDataService, private router: Router, private _location: Location) {
     this.details = [];
