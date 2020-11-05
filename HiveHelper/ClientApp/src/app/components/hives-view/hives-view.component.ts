@@ -4,6 +4,7 @@ import { Route } from '@angular/compiler/src/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Hive } from '../../models/hive';
 import { UserDataService } from '../../services/user-data.service';
+import { Location } from '../../models/location';
 
 @Component({
   selector: 'app-hives-view',
@@ -21,7 +22,8 @@ export class HivesViewComponent implements OnInit {
   displayBlue: boolean;
   displayRed: boolean;
   displayYellow: boolean;
-  yard_name: string;
+  yard: Location;
+
   imgPath1 = '../../../assets/bee1.png';
   imgPath2 = '../../../assets/bee2.png';
 
@@ -39,7 +41,7 @@ export class HivesViewComponent implements OnInit {
     }
     this.location_id = +this.route.snapshot.paramMap.get("location_id");
     this.data.getYards().subscribe(response => {
-      this.yard_name = response.filter(x => x.id == this.location_id)[0].name;
+      this.yard = response.filter(x => x.id == this.location_id)[0];
     });
     this.refreshHives();
   }

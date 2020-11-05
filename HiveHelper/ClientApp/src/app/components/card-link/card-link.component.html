@@ -1,3 +1,5 @@
 <div [ngClass]="{'redCard': color == 'redCard', 'blueCard': color == 'blueCard', 'greenCard': color == 'greenCard', 'yellowCard': color == 'yellowCard'}" class="box" [routerLink]="['/' + link, data]">
-  {{title}}
+  <h3>{{title}}</h3>
+  <p *ngIf="textone">{{textone}}</p>
+  <p *ngIf="texttwo">{{texttwo}}</p>
 </div>

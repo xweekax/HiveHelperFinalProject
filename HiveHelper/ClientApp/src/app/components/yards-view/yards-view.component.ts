@@ -103,6 +103,7 @@ export class YardsViewComponent implements OnInit {
 
         //get all hives, to check status'
         this.data.getHives(value.id).subscribe(allHives => {
+          value.hive_count = allHives.length;
           //check if all hives are green, add to green yards
           this.data.getCheckedTodayHives(value.id).subscribe(greenHives => {
             if (greenHives.length == allHives.length) {

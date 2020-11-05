@@ -11,6 +11,8 @@ export class CardLinkComponent implements OnInit {
   @Input() data: string | number;
   @Input() title: string;
   @Input() color: string;
+  @Input() textone: string;
+  @Input() texttwo: string;
 
   constructor() { }
 

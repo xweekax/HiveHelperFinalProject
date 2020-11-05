@@ -9,7 +9,7 @@
     </b>
   </div>
   <div class="action-container">
-    <app-card-link *ngFor="let y of filterYards()" [link]="'Yard'" [data]="y.id" [title]="y.name" [color]="getColor(y)"></app-card-link>
+    <app-card-link *ngFor="let y of filterYards()" [link]="'Yard'" [data]="y.id" [title]="y.name" [color]="getColor(y)" [textone]="'Hive Count: ' + y.hive_count"></app-card-link>
   </div>
   <app-add-yard *ngIf="user_data.loggedIn.permissions?.includes('admin')" (added)="onAdd($event)"></app-add-yard>
 </div>
