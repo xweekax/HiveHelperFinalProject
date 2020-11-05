@@ -13,6 +13,8 @@ import { ActionDataService } from '../../services/action-data.service';
   styleUrls: ['./admin-view.component.css']
 })
 export class AdminViewComponent implements OnInit {
+  imgPath1 = '../../../assets/bee1.png';
+  imgPath2 = '../../../assets/bee2.png';
 
   constructor(private user_data: UserDataService, private router: Router) { }
 

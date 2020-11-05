@@ -17,4 +17,9 @@
   <app-add-hive *ngIf="user_data.loggedIn.permissions?.includes('leader')" [location_id]="location_id" (added)="onAdd($event)"></app-add-hive>
 </div>
 
+<div>
+  <img class="slide-in-left top-bee" [src]="imgPath1" />
+  <img class="slide-in-right bottom-bee-two" [src]="imgPath2" />
+</div>
+
 
