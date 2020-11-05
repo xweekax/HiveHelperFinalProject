@@ -9,3 +9,24 @@
   max-width: 60%;
   margin: 0 auto;
 }
+
+input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  cursor: pointer;  
+}
+
+  input[type=checkbox]:after {
+    content: " ";
+    background-color: #e8880b;
+    display: inline-block;
+    visibility: visible;
+    position: absolute;
+  }
+
+  input[type=checkbox]:checked:after {
+    content: "\2620";
+    font-size: 16px;
+    text-align: center;
+  }

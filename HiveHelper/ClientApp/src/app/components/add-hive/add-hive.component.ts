@@ -23,7 +23,9 @@ export class AddHiveComponent implements OnInit {
       id: 0,
       name: "",
       inspection_interval: null,
-      location_id: this.location_id
+      location_id: this.location_id,
+      genetics: "",
+      aggressive: false
     };
   }
 

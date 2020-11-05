@@ -31,7 +31,12 @@ namespace HiveHelper.Services
 
         public bool AddHive(Hive add_hive)
         {
-            int result = db.Execute("AddHive", new {@location_id = add_hive.location_id, @inspection_interval = add_hive.inspection_interval, @name = add_hive.name }, commandType: CommandType.StoredProcedure);
+            if(add_hive.genetics is null || add_hive.genetics == "")
+            {
+                add_hive.genetics = "unknown";
+            }
+
+            int result = db.Execute("AddHive", new {@location_id = add_hive.location_id, @inspection_interval = add_hive.inspection_interval, @name = add_hive.name, @genetics = add_hive.genetics }, commandType: CommandType.StoredProcedure);
             return result != 0;
         }
 
@@ -164,7 +169,7 @@ namespace HiveHelper.Services
 
         public bool UpdateHive(Hive update_hive)
         {
-            string query = "UPDATE Hive SET location_id = @location_id, inspection_interval = @inspection_interval, name = @name WHERE id = @id";
+            string query = "UPDATE Hive SET location_id = @location_id, inspection_interval = @inspection_interval, name = @name, aggressive = @aggressive WHERE id = @id";
             int results = db.Execute(query, update_hive);
             return results == 1;
         }

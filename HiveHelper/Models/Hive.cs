@@ -11,5 +11,7 @@ namespace HiveHelper.Models
         public long location_id { get; set; }
         public int inspection_interval { get; set;}
         public string name { get; set; }
+        public bool aggressive { get; set; }
+        public string genetics { get; set; }   
     }
 }

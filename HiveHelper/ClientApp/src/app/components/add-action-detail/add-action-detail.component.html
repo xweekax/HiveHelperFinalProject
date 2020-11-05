@@ -21,7 +21,7 @@
     <textarea [(ngModel)]="new_action.comments" placeholder="Comments"></textarea>
   </div>
   <div class="right-box">
-    <span>Schedule: &nbsp;<input type="checkbox" style="width: 20px; height: 20px;" [(ngModel)]="scheduled" /></span>
+    <span>Schedule: &nbsp;<input type="checkbox" style="width: 16px; height: 16px;" [(ngModel)]="scheduled" /></span>
     <ng-container *ngIf="scheduled">
       <br />
       <input style="width: 55px; height: 30px;" type="datetime-local" [(ngModel)]="scheduled_date" [ngClass]="{'date-error': scheduledError}" />
