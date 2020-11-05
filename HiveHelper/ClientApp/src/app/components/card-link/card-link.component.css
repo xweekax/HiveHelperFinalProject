@@ -21,3 +21,19 @@
   div{
       z-index:2;
   }
+
+.blueCard {
+  background-color: rgba(51, 138, 255, 0.85);
+}
+
+.redCard {
+  background-color: rgba(255, 34, 27, 0.60);
+}
+
+.greenCard {
+  background-color: rgba(86, 255, 27, 0.60);
+}
+
+.yellowCard {
+  background-color: rgba(248, 255, 27, 0.60);
+}

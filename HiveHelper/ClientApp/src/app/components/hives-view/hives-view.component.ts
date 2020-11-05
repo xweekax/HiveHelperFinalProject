@@ -49,16 +49,16 @@ export class HivesViewComponent implements OnInit {
   getColor(hive: Hive): string {
 
     if (this.red_hives.includes(hive)) {
-      return 'rgba(255, 34, 27, 0.60)';
+      return 'redCard';
     }
     else if (this.green_hives.includes(hive)) {
-      return 'rgba(86, 255, 27, 0.60)';
+      return 'greenCard';
     }
     else if (this.yellow_hives.includes(hive)) {
-      return 'rgba(248, 255, 27, 0.60)';
+      return 'yellowCard';
     }
     else {
-      return 'rgba(51, 138, 255, 0.85)';
+      return 'blueCard';
     }
   }
 

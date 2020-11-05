@@ -3,10 +3,10 @@
   
   <h2>Add A Yard</h2>
 
-  <input placeholder="Name" (keyup.enter)="addYard()" [(ngModel)]="new_yard.name"/>
+  <input [ngClass]="{'error': nameError}" placeholder="Name" (keyup.enter)="addYard()" [(ngModel)]="new_yard.name"/>
   <br/>
   <br/>
-  <input placeholder="Address" (keyup.enter)="addYard()" [(ngModel)]="new_yard.address"/>
+  <input [ngClass]="{'error': addressError}" placeholder="Address" (keyup.enter)="addYard()" [(ngModel)]="new_yard.address"/>
   <br/>
   <br/>
   <button (click)="addYard()">Add Yard</button>
