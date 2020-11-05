@@ -1,13 +1,16 @@
 <div class="inner-container">
   <h3>{{redirectMessage}}</h3>
   <div *ngIf="!passwordRequired">
-    <input placeholder="Username" [(ngModel)]="username" [ngClass]="{'password-error' : usernameError}" />&nbsp;
+    <p *ngIf="displayError" stlye="color: red">Username and Password not recognized!</p>
+    <input placeholder="Username" [(ngModel)]="username" [ngClass]="{'password-error' : displayError}" />&nbsp;
     <input placeholder="Password" type="password" (keyup.enter)="attemptLogin()" [(ngModel)]="password" [ngClass]="{'password-error' : displayError}" />&nbsp;
     <button (click)="attemptLogin()">Login</button>
   </div>
   <div *ngIf="passwordRequired">
-    <label>Password<input type="password" [(ngModel)]="enterPassword" [ngClass]="{'password-error' : criteriaError}"/></label>
-    <label>Confirm Password<input (keyup.enter)="updatePassword()" type="password" [(ngModel)]="confirmPassword" [ngClass]="{'password-error' : matchError}"/></label>
+    <p *ngIf="criteriaError" stlye="color: red">Password Requirements: Minium characters = 8, One Uppercase, One special character!</p>
+    <p *ngIf="matchError" stlye="color: red">Passwords don't match!</p>
+    <label>Password<input type="password" [(ngModel)]="enterPassword" [ngClass]="{'password-error' : criteriaError}" /></label>
+    <label>Confirm Password<input (keyup.enter)="updatePassword()" type="password" [(ngModel)]="confirmPassword" [ngClass]="{'password-error' : matchError}" /></label>
     <button (click)="updatePassword()">Submit</button>
   </div>
 </div>
