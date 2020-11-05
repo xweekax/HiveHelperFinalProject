@@ -1,27 +1,33 @@
 <div class="inner-container">
+  <div style="text-align: left"><button class="left-button" (click)="goBack()">Back</button></div>
+
   <div class="page-header">
-    <button class="left-button" (click)="goBack()">Back</button>
-    <h1>
-      Hive Details
-    </h1>
+
+    <h1>Hive Details</h1>
   </div>
+
+  <h5>
+    Genetics: {{hive.genetics}} <br />
+    Aggressive <input type="checkbox" style="width: 16px; height: 16px;" (change)="updateAggression()" [(ngModel)]="hive.aggressive" />
+  </h5>
+
   <app-add-action-detail [hive_id]="hive_id" (added)="onAdd($event)"></app-add-action-detail>
   <br />
   <div class="action-container">
     <h2>Scheduled Tasks</h2>
-    <br/>
+    <br />
     <app-action-detail-item *ngFor="let d of incompleteActions()" [action]="d" (completed)="completeTask($event)"></app-action-detail-item>
   </div>
   <p>{{message}}</p>
-  
+
   <div class="action-container">
     <h2>Completed Actions</h2>
-    <br/>
+    <br />
     <app-action-detail-item *ngFor="let d of completedActions()" [action]="d"></app-action-detail-item>
   </div>
-  <br/>
+  <br />
   <button *ngIf="user_data.loggedIn.permissions?.includes('leader')" class="hive-detail-view" (click)="delete()">Delete Hive</button>
-  <br/><br/>
+  <br /><br />
 </div>
 
 <div>

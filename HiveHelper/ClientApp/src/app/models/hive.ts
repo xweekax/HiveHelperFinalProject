@@ -3,4 +3,6 @@ export interface Hive {
   location_id: number;
   inspection_interval: number;
   name: string;
+  genetics: string;
+  aggressive: boolean;
 }

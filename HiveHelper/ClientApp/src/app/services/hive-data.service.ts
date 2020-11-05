@@ -50,4 +50,8 @@ export class HiveDataService {
   getUrgentHives(location_id: number): Observable<Hive[]> {
     return this.http.get<Hive[]>(this.baseUrl + this.hiveUrl + `filter/urgent/${location_id}`);
   }
+
+  updateHive(hive: Hive): Observable<ApiResult> {
+    return this.http.put<ApiResult>(this.baseUrl + this.hiveUrl, hive);
+  }
 }

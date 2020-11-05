@@ -1,6 +1,7 @@
 <div class="inner-container">
   <div class="page-header">
-    <h1>Hives in {{yard_name}} Yard</h1>
+    <h1>Hives in {{yard.name}} Yard</h1>
+    <h4>{{yard.address}}</h4>
   </div>
   <div>
     <b>
@@ -11,7 +12,7 @@
     </b>
   </div>
   <div class="action-container">
-    <app-card-link *ngFor="let h of filterHives()" [link]="'Hive'" [data]="h.id" [title]="h.name" [color]="getColor(h)"></app-card-link>
+    <app-card-link *ngFor="let h of filterHives()" [link]="'Hive'" [data]="h.id" [title]="h.name" [color]="getColor(h)" [textone]="'Genetics: ' + h.genetics" [texttwo]="(h.aggressive ? '' : 'Not ') + 'Aggressive'"></app-card-link>
   </div>
   <br />
   <app-add-hive *ngIf="user_data.loggedIn.permissions?.includes('leader')" [location_id]="location_id" (added)="onAdd($event)"></app-add-hive>

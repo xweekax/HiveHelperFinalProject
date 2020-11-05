@@ -86,4 +86,8 @@ export class HiveDetailViewComponent implements OnInit {
     });
   }
 
+  updateAggression() {
+    this.hive_data.updateHive(this.hive).subscribe();
+  }
+
 }

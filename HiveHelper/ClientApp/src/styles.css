@@ -200,5 +200,7 @@ body {
 
 .left-button {
   position: relative;
-  float: left;
+  margin-left: 0;
 }
+
+

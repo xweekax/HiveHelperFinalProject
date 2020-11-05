@@ -60,6 +60,7 @@ export class AddActionDetailComponent implements OnInit {
       entered_by_last_name: ''
     }
     this.getPrimaryActions();
+    this.scheduled_date = this.new_action.scheduled_date.toISOString();
   }
 
   ngOnInit() {
@@ -147,5 +148,4 @@ export class AddActionDetailComponent implements OnInit {
     }
     
   }
-
 }
