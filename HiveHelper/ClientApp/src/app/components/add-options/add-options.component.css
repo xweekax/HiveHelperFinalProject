@@ -6,4 +6,23 @@
   border-style: solid;
   border-width: thin;
   padding: 20px 20px 20px 20px;
+  text-align: left;
+}
+
+button{
+    width: 120px;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+select {
+  width: 250px;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+input {
+  width: 250px;
+  margin-top: 5px;
+  margin-right: 5px;
 }
