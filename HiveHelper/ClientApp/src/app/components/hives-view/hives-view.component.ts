@@ -96,7 +96,7 @@ export class HivesViewComponent implements OnInit {
       return displayHives;
     }
     else {
-      return displayHives.filter(x => x.name.includes(this.search));
+      return displayHives.filter(x => x.name.toLowerCase().includes(this.search.toLowerCase()));
     }
   }
 

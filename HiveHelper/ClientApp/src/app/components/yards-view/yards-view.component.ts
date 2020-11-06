@@ -87,7 +87,7 @@ export class YardsViewComponent implements OnInit {
       return displayYards;
     }
     else {
-      return displayYards.filter(x => x.name.includes(this.search));
+      return displayYards.filter(x => x.name.toLowerCase().includes(this.search.toLowerCase()));
     }
   }
 

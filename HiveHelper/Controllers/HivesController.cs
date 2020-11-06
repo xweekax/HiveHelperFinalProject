@@ -122,14 +122,8 @@ namespace HiveHelper.Controllers
                 DateTime completed;
                 if (actions.Count() > 0 && actions.Any(x => x.completed))
                 {
-                    completed = actions.Where(x => x.completed).First().completed_date;
-                    foreach (ActionDetail a in actions)
-                    {
-                        if(a.completed_date > completed && a.completed)
-                        {
-                            completed = a.completed_date;
-                        }
-                    }
+                    //get most recent completed action date
+                    completed = GetCompletedDate(actions);
                     if(completed.AddDays(h.inspection_interval) < DateTime.Now)
                     {
                         overdue_inspections.Add(h);
@@ -143,7 +137,7 @@ namespace HiveHelper.Controllers
             return overdue_inspections;
         }
 
-        //yello/red if too long things
+        //red things
         [HttpGet("filter/urgent/{location_id}")]
         public IEnumerable<Hive> GetHivesUrgentAction(long location_id)
         {
