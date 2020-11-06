@@ -27,7 +27,7 @@ namespace HiveHelper.Controllers
             {
                 password = "";
             }
-            var hasher = SHA256.Create();
+            SHA256 hasher = SHA256.Create();
             byte[] hashed = hasher.ComputeHash(Encoding.UTF8.GetBytes(password));
 
             StringBuilder builder = new StringBuilder();
@@ -63,7 +63,7 @@ namespace HiveHelper.Controllers
 
             if(found == null)
             {
-                status = "fail no user found";
+                status = "fail";
                 result = false;
             }
             else if (found.password == null || found.password == "")
@@ -81,7 +81,7 @@ namespace HiveHelper.Controllers
             }
             else
             {
-                status = $"fail password doesn't match \n {found.password} \n {ParsePassword(password)}";
+                status = "fail";
                 found = null;
                 result = false;
             }
